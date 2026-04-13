@@ -1,0 +1,42 @@
+<template>
+    <lightning-card title="Inventory & Pricebook List">
+
+        <!-- PRODUCT PICKLIST + BUTTON -->
+        <div class="slds-m-around_small slds-grid slds-grid_align-spread slds-align_absolute-center">
+            
+            <!-- PRODUCT PICKLIST -->
+            <lightning-combobox
+                name="product"
+                label="Select Product"
+                options={productOptions}
+                placeholder="Select Product"
+                class="custom-combobox">
+            </lightning-combobox>
+
+            <!-- NEW BUTTON aligned to the right -->
+            <div class="slds-align-middle">
+                <lightning-button 
+                    label="New Inventory" 
+                    variant="brand" 
+                    icon-name="utility:add"
+                    icon-position="left"
+                    onclick={handleNew}
+                    class="custom-button">
+                </lightning-button>
+            </div>
+
+        </div>
+
+        <!-- DATA TABLE -->
+        <lightning-datatable
+            key-field="recordId"
+            data={data}
+            columns={columns}
+            draft-values={draftValues}
+            onsave={handleSave}
+            hide-checkbox-column
+            editable>
+        </lightning-datatable>
+
+    </lightning-card>
+</template>

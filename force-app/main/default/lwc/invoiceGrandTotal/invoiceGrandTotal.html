@@ -1,0 +1,24 @@
+<template>
+    <lightning-card class="invoice-card" icon-name="standard:activations">
+        <div class="container">
+            <!-- Show grand total only if invoice is not paid -->
+            <template if:true={showGrandTotal}>
+                <p class="total-label">Grand Total:</p>
+                <p class="total-value">₹ {grandTotal}</p>
+            </template>
+
+            <!-- Show error if any -->
+            <template if:true={error}>
+                <p class="error">Error fetching grand total</p>
+            </template>
+
+            <!-- Show success message and icon if invoice is Paid -->
+            <template if:true={isPaid}>
+                <div class="paid-message">
+                    <img src={paidIconUrl} alt="Paid" class="paid-icon"/>
+                    <p class="success-text">All payments have been completed successfully!</p>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,87 @@
+/* Container for the whole component */
+.slds-box {
+    border: 1px solid #dddbda;
+    border-radius: 0.25rem;
+    max-width: 400px; /* Adjust width as needed */
+}
+
+/* Heading styles */
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+/* --- Circular Meter (SVG) Styles --- */
+
+.circle-svg {
+    width: 100%;
+    max-width: 150px; /* Control the size of the circle */
+    height: auto;
+}
+
+/* Light gray background circle */
+.circle-background {
+    fill: none;
+    stroke: #dddbda;
+    stroke-width: 5;
+}
+
+/* The red progress ring */
+.circle-progress {
+    fill: none;
+    stroke: #eb5452; /* Red color from your image */
+    stroke-width: 5;
+    /* Rotation to start the circle at the top */
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%; 
+}
+
+/* Text in the center of the circle */
+.circle-text-count {
+    font-size: 20px;
+    font-weight: bold;
+    fill: #181818;
+}
+.circle-text-label {
+    font-size: 10px;
+    fill: #54698d;
+}
+
+/* --- Activity Legend Styles --- */
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    font-size: 0.85rem;
+    color: #54698d;
+}
+
+.legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+/* Color definitions */
+.upcoming { background-color: #007068; } /* Green */
+.past { background-color: #005fb2; } /* Blue */
+.no-activity { background-color: #eb5452; } /* Red */
+
+
+/* Button Style (to match the image) */
+.view-button {
+    background-color: transparent;
+    border: 1px solid #dddbda;
+    color: #0070d2;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-weight: 400;
+}
+
+.view-button:hover {
+    border-color: #0070d2;
+}

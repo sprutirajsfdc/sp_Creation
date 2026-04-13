@@ -1,0 +1,19 @@
+.icon-container {
+    display: inline-block;
+}
+
+.status-icon {
+    width: 100px;   /* adjust size here */
+    height: 50px;
+    object-fit: contain;
+}
+/* Confetti canvas covers whole screen */
+.confetti-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+}

@@ -1,0 +1,16 @@
+<apex:page controller="GatePassPDFController" renderAs="pdf">
+    <html>
+        <body style="font-size:10px; font-family:Arial; margin:10px;">
+            <h3 style="text-align:center;">Gate Pass</h3>
+            <hr/>
+            <p><b>Product:</b> {!gp.Product__c}</p>
+            <p><b>Type:</b> {!gp.Type__c}</p>
+            <p><b>Quantity:</b> {!gp.Quantity__c}</p>
+            <p><b>Person Name:</b> {!gp.Person_Name__c}</p>
+            <p><b>Purpose:</b> {!gp.Description__c}</p>
+            <p><b>Date:</b> {!gp.In_time__c}</p>
+            <hr/>
+            <p style="text-align:center;">Generated from Salesforce</p>
+        </body>
+    </html>
+</apex:page>

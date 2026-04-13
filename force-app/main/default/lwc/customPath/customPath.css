@@ -1,0 +1,87 @@
+/* Container spacing */
+.slds-path {
+    padding: 10px 15px;
+}
+
+/* Path list */
+.slds-path__nav {
+    display: flex;
+    overflow-x: auto;
+    justify-content: flex-start;
+}
+
+/* Hide connector line */
+.slds-path__scroller,
+.slds-path__nav::before,
+.slds-path__item::before {
+    display: none !important;
+}
+
+/* Each stage base */
+.slds-path__item {
+    position: relative;
+    padding: 10px 20px;
+    margin-right: 8px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    color: white;
+}
+
+/* Hover effect */
+.slds-path__item:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+/* Text styling */
+.slds-path__title {
+    white-space: nowrap;
+    font-size: 14px;
+    color: white;
+}
+
+/* Smooth scroll for overflow */
+.slds-path__nav::-webkit-scrollbar {
+    height: 6px;
+}
+.slds-path__nav::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+/* Stage Colors */
+.stage-draft {
+    background-color: #f59e0b; /* Orange */
+}
+
+.stage-sent {
+    background-color: #facc15; /* Yellow */
+    color: black;
+}
+
+.stage-partiallypaid {
+    background-color: #fef08a; /* Ice Lemon */
+    color: black;
+}
+
+.stage-paid {
+    background-color: #22c55e; /* Green */
+}
+
+.stage-cancelled {
+    background-color: #ef4444; /* Red */
+}
+
+/* Current active stage */
+.slds-is-current {
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    transform: scale(1.05);
+    font-weight: 600;
+}
+
+/* Completed stages */
+.slds-is-complete {
+    filter: brightness(0.9);
+}

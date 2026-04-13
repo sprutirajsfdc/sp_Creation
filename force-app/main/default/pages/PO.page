@@ -1,0 +1,182 @@
+<apex:page controller="POPDFController" renderAs="pdf" showHeader="false" sidebar="false">
+
+    <div style="font-family: Arial; padding:20px; font-size:12px;">
+
+        <!-- HEADER -->
+        <div style="width:100%;">
+            <div style="float:left;">
+                <div style="font-size:24px; font-weight:bold;">PURCHASE ORDER</div>
+                <div><b>{!poRecord.Name}</b></div>
+            </div>
+
+            <div style="float:right;">
+                <img src="{!URLFOR($Resource.mater)}" style="height:60px;" />
+            </div>
+        </div>
+
+        <div style="clear:both;"></div>
+        <br/>
+
+        <!-- DATE INFO -->
+        <div style="width:100%;">
+            <div style="float:left;">
+                <b>Date:</b>
+                <apex:outputText value="{0,date,dd MM yyyy}">
+                    <apex:param value="{!poRecord.CreatedDate}" />
+                </apex:outputText>
+            </div>
+
+            <div style="float:right;">
+                <b>P.O #:</b> {!poRecord.Name}
+            </div>
+        </div>
+
+        <div style="clear:both;"></div>
+        <br/>
+
+        <!-- ADDRESS -->
+        <div style="width:100%;">
+            <div style="float:left; width:45%; border:1px solid #000; padding:10px;">
+                <b>Vendor</b><br/>
+                {!vendor.Name}<br/>
+                {!vendor.BillingStreet}<br/>
+                {!vendor.BillingCity}, {!vendor.BillingState}<br/>
+                {!vendor.BillingPostalCode}<br/>
+                {!vendor.Phone}
+            </div>
+
+            <div style="float:right; width:45%; border:1px solid #000; padding:10px;">
+                <b>Ship To</b><br/>
+                <strong>Company Name:</strong> The Material India<br/>
+                Mancheswar Industrial Estate, Plot No- 355/8071,<br/>
+                near Somanath Sikhya Niketan, Vinayak Nagar,<br/>
+                Chakeisihani, Bhubaneswar, Odisha 751010<br/>
+                Phone Number :083388 08844
+            </div>
+        </div>
+
+        <div style="clear:both;"></div>
+        <br/><br/>
+
+        <!-- ITEMS TABLE -->
+        <table style="width:100%; border-collapse:collapse;" border="1">
+            <tr style="background-color:#1f4e79; color:white;">
+                <th style="padding:6px;">#</th>
+                <th style="padding:6px;">Description</th>
+                <th style="padding:6px;">Qty</th>
+                <th style="padding:6px;">Unit Price</th>
+                <th style="padding:6px;">Total</th>
+            </tr>
+
+            <apex:variable var="rowNum" value="{!0}"/>
+
+            <apex:repeat value="{!lineItems}" var="item">
+                <apex:variable var="rowNum" value="{!rowNum + 1}"/>
+
+                <tr>
+                    <td style="padding:6px; text-align:center;">{!rowNum}</td>
+                    <td style="padding:6px;">
+                        {!IF(ISBLANK(item.Product__r.Name), item.Name, item.Product__r.Name)}
+                    </td>
+                    <td style="padding:6px; text-align:center;">{!item.Quantity__c}</td>
+                    <td style="padding:6px; text-align:right;">₹ {!item.Unit_Price__c}</td>
+                    <td style="padding:6px; text-align:right;">₹ {!item.Total_Price__c}</td>
+                </tr>
+            </apex:repeat>
+        </table>
+
+        <br/>
+
+        <!-- TOTAL -->
+        <div style="width:100%;">
+            <div style="float:right; width:250px;">
+                <table style="width:100%;" border="1">
+                    <tr>
+                        <td style="padding:6px;"><b>Subtotal</b></td>
+                        <td style="padding:6px; text-align:right;">₹ {!grandTotal}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:6px;"><b>Total</b></td>
+                        <td style="padding:6px; text-align:right;"><b>₹ {!grandTotal}</b></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div style="clear:both;"></div>
+        <br/><br/>
+
+        <!-- SIGN -->
+        <div style="text-align:right;">
+            <img src="{!URLFOR($Resource.thema)}" style="height:120px;" /><br/>
+            Authorized Signatory
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div style="position:fixed; bottom:0; width:100%; text-align:center; font-size:10px; border-top:1px solid #000;">
+        © The material India | Purchase Order
+    </div>
+
+    <!-- ================= PAGE 2 ================= -->
+    <div style="page-break-before: always; padding:20px; font-family: Arial; font-size:12px;">
+
+        <div style="font-size:18px; font-weight:bold; margin-bottom:10px;">
+            Purchase Order Terms// Conditions
+        </div>
+
+        <ol style="padding-left:18px;">
+            <li><b>Acceptance of Order</b>
+                Supplier must acknowledge and accept the PO within specified time.
+            </li>
+
+            <li><b>Price and Taxes</b>
+                Prices must match agreed terms. No increase without approval.
+            </li>
+
+            <li><b>Delivery Terms</b>
+                Delivery must meet timeline. Delays may result in penalties.
+            </li>
+
+            <li><b>Inspection and Acceptance</b>
+                Buyer may inspect goods. Rejected goods must be replaced.
+            </li>
+
+            <li><b>Payment Terms</b>
+                Payment as per agreed cycle (30/45/60 days).
+            </li>
+
+            <li><b>Quality Assurance</b>
+                Goods must meet defined quality standards.
+            </li>
+
+            <li><b>Warranty</b>
+                Supplier guarantees goods against defects.
+            </li>
+
+            <li><b>Cancellation</b>
+                Buyer may cancel if terms are not met.
+            </li>
+
+            <li><b>Force Majeure</b>
+                Not liable for uncontrollable events.
+            </li>
+
+            <li><b>Confidentiality</b>
+                Supplier must protect all information.
+            </li>
+
+            <li><b>Indemnity</b>
+                Supplier covers losses due to defects.
+            </li>
+            <li><b>CANCELLATION</b>
+Buyer reserves the right to cancel this PO Agreement, or any portion of thereof, without liability, if; (a) as time is of the essence in this PO agreement, delivery is not made when and as specified; (b) Seller fails to meet contract commitments as to exact time, price, quality or quantity; (c) Seller ceases to conduct its operation in the normal course of business; (d) Seller is unable to meet its obligations as they mature; (e) proceedings are instituted against Seller under the bankruptcy laws or any other laws relating to the relief of creditors; (f) a receiver is appointed or applied for by Seller; or (g) any assignment is made by Seller for the benefit of creditors.  Buyer also reserves the right to cancel for any other reason permitted by the Uniform Commercial Code then in effect in the State of Indiana.  In the event of a cancellation, Buyer shall have no further obligations to Seller except to pay for deliverables that were provided to Buyer prior to such termination and were accepted by Buyer. Upon termination, Seller shall provide any transition assistance that may be reasonably requested by Buyer.</li>
+         <li><b>SELLER’S REPRESENTATIONS AND WARRANTIES</b>
+                Seller represents and warrants that: (a) Seller owns all rights, title and interest in the products and services and has legal authority to sell, license or otherwise transfer the right to use or sell such items to the company; (b) the product and service covered under the Purchase Order are of good and merchantable quality and free from defects in design, material and workmanship, are safe and conform to applicable specifications, drawings, samples, descriptions and associated documentation provided to the company in writing; (C) the product and services, and the production and sale thereof, and all warranties, guarantees, representations by Seller made or authorized to be made in connection therewith are in all respects in compliance with all applicable international, federal, state, local laws, rules and regulations.; (d) the goods are fit for the use intended; (e ) no Purchased Product and/or Purchased Service, or their sale or use will infringe any patents, trademarks, copyrights, trade secrets or similar intellectual property rights of any third party; (f) Seller will comply with all federal, state and locals laws, ordinances, rules and regulations applicable to its performance under this Purchase Order. (g) Seller has not changed any compositions, formulations, or other constituents of the Purchased Products without written approval from Buyer.
+            </li>
+        </ol>
+
+    </div>
+
+</apex:page>

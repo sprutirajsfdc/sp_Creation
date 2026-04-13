@@ -1,0 +1,137 @@
+<apex:page controller="SfdcinvoiceController" renderAs="pdf" showHeader="false" sidebar="false">
+    <div style="font-family: Arial; padding: 20px; padding-bottom:60px;">
+        
+        <!-- Header -->
+        <div style="width:100%;">
+            <div style="float:left; font-size:22px; font-weight:bold;">
+                INVOICE
+            </div>
+            
+            <div style="float:right;">
+                <img src="{!URLFOR($Resource.canva)}" style="height:70px;" />
+            </div>
+        </div>
+        
+        <div style="clear:both;"></div>
+        <br/>
+        
+        <!-- Invoice Info -->
+        <div style="width:100%; font-size:12px;">
+            <div style="float:left;">
+                <b>Invoice No:</b> {!invoiceNumber}
+            </div>
+            
+            <div style="float:right;">
+                <b>Date:</b>
+                <apex:outputText value="{0,date,dd MM yyyy}">
+                    <apex:param value="{!TODAY()}" />
+                </apex:outputText>
+            </div>
+        </div>
+        
+        <div style="clear:both;"></div>
+        <br/>
+        
+        <!-- Contact Person + Billed To (SIDE BY SIDE) -->
+        <table style="width:100%; font-size:12px;">
+            <tr>
+                
+                <!-- Contact Person (Left) -->
+                <td style="width:50%; vertical-align:top;">
+                    <div style="border:1px solid #000; padding:10px;">
+                        <b>Contact Person:</b><br/>
+                        {!billContact.Name}<br/>
+                        {!billContact.Phone}<br/>
+                        {!billContact.Title}<br/>
+                        {!billContact.Department}<br/>	
+                    </div>
+                </td>
+
+                <!-- Billed To (Right) -->
+                <td style="width:50%; vertical-align:top;">
+                    <div style="border:1px solid #000; padding:10px;">
+                        <b>Billed To:</b><br/>
+                        <b>{!acc.Name}</b><br/>
+                        {!acc.BillingStreet}<br/>
+                        {!acc.BillingCity}, {!acc.BillingCountry}<br/>
+                        <b>VAT:</b> {!acc.VAT_Number__c}
+                    </div>
+                </td>
+
+            </tr>
+        </table>
+
+        <br/><br/>
+        
+        <!-- Line Items -->
+        <table style="width:100%; border-collapse:collapse; font-size:12px;" border="1">
+            
+            <tr style="background-color:#f2f2f2;">
+                <th>Sr No</th>
+                <th>Item</th>
+                <th>Description</th>
+                <th>Qty</th>
+                <th>Rate</th>
+                <th>Total</th>
+            </tr>
+            
+            <apex:variable var="rowNum" value="{!0}"/>
+            
+            <apex:repeat value="{!lineItems}" var="item">
+                <apex:variable var="rowNum" value="{!rowNum + 1}"/>
+                
+                <tr>
+                    <td style="text-align:center;">{!rowNum}</td>
+                    <td>{!item.Item_Name__c}</td>
+                    <td>{!item.Item_Description__c}</td>
+                    <td style="text-align:center;">{!item.Quantity__c}</td>
+                    <td style="text-align:right;">AED {!item.Rate__c}</td>
+                    <td style="text-align:right;">
+                        AED {!item.Quantity__c * item.Rate__c}
+                    </td>
+                </tr>
+            </apex:repeat>
+            
+        </table>
+        
+        <br/>
+        
+        <!-- Grand Total -->
+        <div style="float:right; width:300px;">
+            <table style="width:100%;" border="1">
+                <tr>
+                    <td><b>Grand Total</b></td>
+                    <td style="text-align:right;">
+                        <b>AED {!grandTotal}</b>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+        <div style="clear:both;"></div>
+        
+        <br/><br/>
+        
+        <!-- Bank / Additional Details -->
+        <div style="font-size:12px;">
+            <b>Bank / Additional Details:</b><br/>
+            <apex:outputText value="{!IF(NOT(ISBLANK(lineItems[0].Additional_Notes__c)), lineItems[0].Additional_Notes__c, 'N/A')}" 
+                escape="false"/>
+        </div>
+        
+        <br/><br/>
+        
+        <!-- Signature -->
+        <div style="text-align:right; font-size:12px;">
+            <img src="{!URLFOR($Resource.signateeee)}" style="height:120px;" /><br/>
+            Authorized Signatory
+        </div>
+        
+    </div>
+    
+    <!-- Footer -->
+    <div style="position:fixed; bottom:0; left:0; width:100%; text-align:center; font-size:10px; border-top:1px solid #000;">
+        ©Sp_Salesforce Implementation. All Rights Reserved
+    </div>
+    
+</apex:page>

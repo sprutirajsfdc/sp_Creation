@@ -1,0 +1,97 @@
+<apex:page standardController="Permit_Gate_Pass__c"
+           extensions="VisitorPassVFController"
+           renderAs="pdf"
+           showHeader="false"
+           standardStylesheets="true">
+
+    <!-- Controller variable -->
+    <apex:variable var="visitor" value="{!GatePass}"/>
+
+    <!-- Wrapper table for centering -->
+    <table align="center" cellpadding="0" cellspacing="0" style="width: 340px; border-style: solid; page-break-inside: avoid;">
+        <tr>
+            <td>
+                <!-- Card table -->
+                <table cellpadding="0" cellspacing="0" align="center"
+                       style="border-collapse: collapse; width: 320px; border: 2px solid #000; padding: 10px;">
+                    
+                    <!-- Logo -->
+                    <tr>
+                        <td style="text-align: center; padding-top: 10px; padding-bottom: 4px;">
+                            <apex:image url="{!URLFOR($Resource.companyLogo)}" width="150" height="80"/>
+                            <div style="font-weight: bold; font-size: 14px; margin-top: 4px;">Radish Technology, Goa, Verna Panchayat, Goa</div>
+                        </td>
+                    </tr>
+
+                    <!-- Header -->
+                    <tr>
+                        <td style="border-bottom: 2px solid #ccc; font-weight: bold; font-size: 16px; text-align: center; padding: 8px 6px;">
+                            VISITOR PASS
+                        </td>
+                    </tr>
+
+                    <!-- Visitor Details -->
+                    <tr>
+                        <td style="padding: 8px 10px;">
+                            <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse;">
+                                <tr>
+                                    <td style="font-weight: bold; width: 80px; vertical-align: top; padding: 3px 0;">Name:</td>
+                                    <td style="padding: 3px 0;"><apex:outputText value="{!visitor.Visitor_Name__c}"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; width: 80px; vertical-align: top; padding: 3px 0;">Mobile:</td>
+                                    <td style="padding: 3px 0;"><apex:outputText value="{!visitor.Visitor_Mobile_Number__c}"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; width: 80px; vertical-align: top; padding: 3px 0;">Purpose:</td>
+                                    <td style="padding: 3px 0;"><apex:outputText value="{!visitor.Purpose_to_Visit__c}"/></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Visitor Photo -->
+                    <tr>
+                        <td style="text-align: center; padding: 10px 0 14px 0;">
+                            <div style="font-size: 11px; margin-bottom: 6px;">Visitor Photo</div>
+                            <div style="border: 2px solid #000; width: 130px; height: 160px; display: inline-block;">
+                                <apex:outputPanel rendered="{!NOT(ISBLANK(PhotoVersionId))}">
+                                    <apex:image url="/sfc/servlet.shepherd/version/download/{!PhotoVersionId}" width="130" height="160"/>
+                                </apex:outputPanel>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Terms & Conditions -->
+                    <tr>
+                        <td style="padding: 6px 10px; font-size: 10px;">
+                            <strong>Terms and Conditions:</strong>
+                            <ol style="padding-left: 18px; margin: 4px 0;">
+                                <li>Visitors must carry a valid government-issued ID and present it when requested.</li>
+                                <li>The Visitor Pass must be worn visibly and returned at the exit gate.</li>
+                                <li>Visitors must remain with their host unless permitted by security.</li>
+                                <li>Access is restricted to authorised areas; prohibited areas are strictly forbidden.</li>
+                                <li>Photography, video, or audio recording requires prior approval.</li>
+                                <li>No weapons, hazardous materials, alcohol, or prohibited items allowed.</li>
+                                <li>Visitors must comply with all safety instructions at all times.</li>
+                                <li>Visitors must behave professionally and respectfully.</li>
+                            </ol>
+                        </td>
+                    </tr>
+
+                    <!-- Signature + Stamp -->
+                    <tr>
+                        <td style="padding: 12px 10px; text-align: right; position: relative;">
+                            <span style="font-weight: bold;">Signature ________</span>
+                            <!-- Stamp Image -->
+                            <img src="https://spcreation2-dev-ed--c.develop.vf.force.com/resource/1774416338000/stamp"
+                                 style="width: 60px; height: 60px; vertical-align: middle; margin-left: 10px; opacity: 0.8;" />
+                        </td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+    </table>
+
+</apex:page>

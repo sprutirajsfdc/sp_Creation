@@ -1,0 +1,100 @@
+<apex:page standardController="Invoice__c" extensions="InvoiceController" renderAs="pdf" showHeader="false" sidebar="false">
+
+    <!-- ================= PAGE 1 ================= -->
+
+    <div style="font-size:22px; font-weight:bold;float:left;">
+        Material CheckList for Dispatch
+    </div>
+
+    <div style="position:absolute; right:0;">
+        <img src="{!URLFOR($Resource.mater)}" style="height:60px;" />
+    </div>
+
+    <br/><br/><br/><br/>
+
+    <table style="width:100%; border-collapse:collapse; font-family:Arial;">
+        <tr style="background-color:#D6EAF8;">
+            <th style="border:1px solid #000; padding:8px;">S.No</th>
+            <th style="border:1px solid #000; padding:8px;">Product Name</th>
+            <th style="border:1px solid #000; padding:8px;">Quantity</th>
+        </tr>
+         <apex:variable var="rowNum" value="{!0}"/>
+
+        <apex:repeat value="{!lineItems}" var="item">
+             <apex:variable var="rowNum" value="{!rowNum + 1}"/>
+            <tr>
+                <td style="border:1px solid #000; padding:8px; text-align:center;">
+                    {!rowNum}
+                </td>
+                <td style="border:1px solid #000; padding:8px;">
+                    {!item.Product__r.Name}	
+                </td>
+                <td style="border:1px solid #000; padding:8px; text-align:center;">
+                    {!item.Quantity__c}
+                </td>
+            </tr>
+        </apex:repeat>
+    </table>
+
+    <!-- PAGE BREAK -->
+    <div style="page-break-after:always;"></div>
+
+    <!-- ================= PAGE 2 ================= -->
+
+    <!-- Header -->
+    <div style="float:left;">
+        <div style="font-size:24px; font-weight:bold;">Delivery Details</div>
+    </div>
+
+    <div style="position:absolute; right:0;">
+        <img src="{!URLFOR($Resource.mater)}" style="height:60px;" />
+    </div>
+
+    <br/><br/><br/><br/>
+
+    <!-- Container -->
+    <div style="display:flex; gap:30px; font-family: Arial; justify-content:center; flex-wrap:wrap;">
+
+        <!-- Deliver To -->
+        <div style="background-color:#FDFEFE; border:1px solid #ccc; border-radius:8px; padding:20px; width:400px;">
+            <h2 style="margin-top:0; color:#1F618D;">Deliver To</h2>
+
+            <p><strong>Name:</strong> {!customer.Name}</p>
+            <p><strong>Address:</strong> {!billingAddress}</p>
+            <p><strong>Phone:</strong> {!customer.Phone}</p>
+            <p style="color:#2E86C1;"><strong>Total Items:</strong> {!totalLineItems}</p>
+        </div>
+
+        <!-- Sender Details -->
+        <div style="background-color:#FDFEFE; border:1px solid #ccc; border-radius:8px; padding:20px; width:400px;">
+            <h2 style="margin-top:0; color:#1F618D;">Sender Details</h2>
+
+            <p style="line-height:1.5;">
+                <strong>Company Name:</strong> The Material India<br/>
+                Mancheswar Industrial Estate, Plot No- 355/8071,<br/>
+                near Somanath Sikhya Niketan, Vinayak Nagar,<br/>
+                Chakeisihani, Bhubaneswar, Odisha 751010
+            </p>
+
+            <h3 style="margin-top:15px; color:#1F618D;">Delivery Notes</h3>
+            <p style="font-style:italic;">
+                Please ensure delivery between 9 AM – 5 PM. Handle with care.
+            </p>
+        </div>
+
+    </div>
+
+    <!-- SIGNATURE -->
+    <div style="margin-top:60px; width:100%; font-family: Arial;">
+        <div style="text-align:right;">
+           
+            Customer Sign
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div style="position:fixed; bottom:0; left:0; width:100%; text-align:center; font-size:10px; border-top:1px solid #000; padding-top:5px;">
+        © The material India | Purchase Order
+    </div>
+
+</apex:page>

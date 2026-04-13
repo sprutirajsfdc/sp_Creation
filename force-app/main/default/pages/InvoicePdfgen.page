@@ -1,0 +1,141 @@
+<apex:page controller="InvoicePDFController" renderAs="pdf" showHeader="false" sidebar="false">
+    <div style="font-family: Arial; padding: 20px; padding-bottom:60px;">
+
+        <!-- Header Section -->
+        <div style="width:100%;">
+
+            <div style="float:left; font-size:22px; font-weight:bold;">
+                TAX INVOICE
+            </div>
+
+            <div style="float:right;">
+                <img src="{!URLFOR($Resource.mater)}" style="height:70px;" />
+            </div>
+
+        </div>
+
+        <div style="clear:both;"></div>
+
+        <br/>
+
+        <!-- Invoice Info -->
+        <div style="width:100%; font-size:12px;">
+
+            <div style="float:left;">
+                <b>Invoice Number:</b> {!invoiceRecord.Name}
+            </div>
+
+            <div style="float:right;">
+                <b>Invoice Date:</b>
+                <apex:outputText value="{0,date,dd MM yyyy}">
+                    <apex:param value="{!invoiceRecord.CreatedDate}" />
+                </apex:outputText>
+            </div>
+
+        </div>
+
+        <div style="clear:both;"></div>
+
+        <br/>
+
+        <!-- Customer Address -->
+        <div style="font-size:12px; border:1px solid #000; padding:10px; width:300px;">
+            <b>Deliver To:</b><br/>
+            <b>{!IF(ISBLANK(customer.Name),'',customer.Name)}</b><br/>
+            {!IF(ISBLANK(customer.MailingStreet),'',customer.MailingStreet)}<br/>
+            {!IF(ISBLANK(customer.MailingCity),'',customer.MailingCity)}, {!IF(ISBLANK(customer.MailingState),'',customer.MailingState)}<br/>
+            {!IF(ISBLANK(customer.MailingPostalCode),'',customer.MailingPostalCode)}<br/>
+            {!IF(ISBLANK(customer.MailingCountry),'',customer.MailingCountry)}<br/>
+            {!IF(ISBLANK(customer.Phone),'',customer.Phone)}
+        </div>
+        <br/><br/>
+
+        <!-- Line Items -->
+        <table style="width:100%; border-collapse:collapse; font-size:12px;" border="1">
+
+            <tr style="background-color:#f2f2f2;">
+                <th style="padding:5px;">Sr No</th>
+                <th style="padding:5px;">Product</th>
+                <th style="padding:5px;">Size</th>
+                <th style="padding:5px;">Qty</th>
+                <th style="padding:5px;">Unit Price</th>
+                <th style="padding:5px;">Total</th>
+            </tr>
+
+            <apex:variable var="rowNum" value="{!0}"/>
+
+            <apex:repeat value="{!lineItems}" var="item">
+                <apex:variable var="rowNum" value="{!rowNum + 1}"/>
+
+                <tr>
+                    <td style="padding:5px; text-align:center;">{!rowNum}</td>
+
+                    <td style="padding:5px;">
+                        {!IF(ISBLANK(item.Product__r.Name), item.Name, item.Product__r.Name)}<br/>{!item.Product__r.Thickness__c}<br/>{!item.Product__r.Plywood_Type__c}
+                        {!item.Product__r.Packaging_Size__c}
+                    </td>
+                    <td style="padding:5px; text-align:center;">
+                        {!item.Product__r.Size__c}
+                    </td>
+
+                    <td style="padding:5px; text-align:center;">
+                        {!item.Quantity__c}
+                    </td>
+
+                    <td style="padding:5px; text-align:right;">
+                        ₹ {!item.Unit_Price__c}
+                    </td>
+
+                    <td style="padding:5px; text-align:right;">
+                        ₹ {!item.Total_Price__c}
+                    </td>
+                </tr>
+
+            </apex:repeat>
+
+        </table>
+
+        <br/>
+
+        <!-- Grand Total -->
+        <div style="width:100%;">
+            <div style="float:right; width:300px;">
+                <table style="width:100%; font-size:12px;" border="1">
+                    <tr>
+                        <td style="padding:5px;"><b>Grand Total</b></td>
+                        <td style="padding:5px; text-align:right;">
+                            <b>₹ {!grandTotal}</b>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div style="clear:both;"></div>
+
+        <br/><br/>
+
+        <!-- Declaration -->
+        <div style="font-size:12px;">
+            <b>Declaration:</b><br/>
+            We declare that this invoice shows the actual price of the goods/services described and that all particulars are true and correct.
+        </div>
+
+        <br/><br/>
+
+        <!-- Signature -->
+        <div style="text-align:right; font-size:12px;">
+            <div style="margin-bottom:5px;">
+        <img src="{!URLFOR($Resource.thema)}" style="height:200px;" />
+    </div>
+            Authorized Signatory
+        </div>
+
+    </div>
+   <!-- Footer -->
+<div style="position:fixed; bottom:0; left:0; width:100%; text-align:center; font-size:10px; border-top:1px solid #000; padding-top:5px;">
+    
+    ©The Materials. All Rights Reserved (Terms of Use) Developed and Managed by IndiaMART InterMESH Limited
+</div>
+
+</apex:page>

@@ -1,0 +1,62 @@
+<template>
+    <lightning-card title="Token Generator">
+
+        <div class="slds-p-around_medium">
+
+            <!-- Counter Dropdown -->
+            <lightning-combobox 
+                label="Select Counter"
+                value={counterId}
+                options={counterOptions}
+                onchange={handleCounterChange}>
+            </lightning-combobox>
+
+            <br/>
+
+            <!-- Generate Token Button -->
+            <lightning-button 
+                label="Generate Token" 
+                variant="brand"
+                onclick={handleGenerate}>
+            </lightning-button>
+
+            <template if:true={token}>
+                <div class="ticket slds-m-top_medium">
+                    <h1>TOKEN</h1>
+                    <h2>{token.Token_Number__c}</h2>
+
+                    <p><strong>Counter Name:</strong> {token.Counter__r.Name}</p>
+                    <p><strong>Counter Number:</strong> {token.Counter__r.Counter_Number__c}</p>
+                    <p>{currentTime}</p>
+                </div>
+
+                <!-- ✅ User Assignment -->
+                <div class="slds-m-top_medium">
+                    <lightning-combobox
+                        label="Assign to User"
+                        value={assignedUserId}
+                        options={userOptions}
+                        onchange={handleUserChange}>
+                    </lightning-combobox>
+
+                    <lightning-button
+                        label="Assign User & Mark Serving"
+                        variant="success"
+                        class="slds-m-top_small"
+                        onclick={handleAssignUser}>
+                    </lightning-button>
+                </div>
+
+                <!-- Show assigned user -->
+                <template if:true={token.OwnerId}>
+                    <p class="slds-m-top_small">
+                        <strong>Assigned User:</strong> {assignedUserName} <br/>
+                        <strong>Status:</strong> {token.Status__c}
+                    </p>
+                </template>
+            </template>
+
+        </div>
+
+    </lightning-card>
+</template>

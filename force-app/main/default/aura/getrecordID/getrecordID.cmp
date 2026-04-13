@@ -1,0 +1,10 @@
+<!--like this way we can pass the record id in aura-->
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+   <aura:attribute name="recordId" type="String" />
+    <lightning:card title="Record Id Example" iconName="standard:activation_target">
+        <div class="slds-m-around_medium">
+            <p>Record Id: {!v.recordId}</p>
+        </div>
+    </lightning:card>
+    
+</aura:component>

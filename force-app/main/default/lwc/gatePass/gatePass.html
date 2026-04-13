@@ -1,0 +1,31 @@
+<template>
+    <lightning-card title="Gate Pass Form">
+        <div class="slds-p-around_medium">
+
+            <lightning-input label="Product Name" value={productName} onchange={handleChange} data-field="Product__c"></lightning-input>
+
+            <lightning-combobox
+                name="Gate Type"
+                label="Gate Type"
+                value={gateType}
+                placeholder="Select Type"
+                data-field="Type__c"
+                options={gateTypeOptions}
+                onchange={handleChange}>
+            </lightning-combobox>
+
+            <lightning-input type="number" label="Quantity" value={quantity} data-field="Quantity__c" onchange={handleChange}></lightning-input>
+
+            <lightning-input label="Person Name" value={personName} data-field="Person_Name__c" onchange={handleChange}></lightning-input>
+
+            <lightning-textarea label="Description" value={purpose} data-field="Description__c" onchange={handleChange}></lightning-textarea>
+
+
+            <lightning-input type="datetime" label="Gate In Time" value={gateDateTime} data-field="In_time__c" onchange={handleInChange}></lightning-input>
+             <lightning-input type="datetime" label="Gate Out Time" value={gateDateTime} data-field="Out_Time__c" onchange={handleOutChange}></lightning-input>
+
+            <lightning-button variant="brand" label="Submit" onclick={handleSubmit} class="slds-m-top_medium"></lightning-button>
+
+        </div>
+    </lightning-card>
+</template>

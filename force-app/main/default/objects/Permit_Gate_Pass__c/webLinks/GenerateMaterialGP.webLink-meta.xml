@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GenerateMaterialGP</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <hasMenubar>false</hasMenubar>
+    <hasScrollbars>false</hasScrollbars>
+    <hasToolbar>false</hasToolbar>
+    <height>660</height>
+    <isResizable>true</isResizable>
+    <linkType>url</linkType>
+    <masterLabel>GenerateMaterialGP</masterLabel>
+    <openType>newWindow</openType>
+    <position>none</position>
+    <protected>false</protected>
+    <showsLocation>false</showsLocation>
+    <showsStatus>false</showsStatus>
+    <url>/apex/hic_docmerge__Composer?&amp;advancemergefields=true&amp;id={!Permit_Gate_Pass__c.Id}&amp;documentSolutionKey=35e9f0a2-2c7b-4e25-9adb-b4593ea88838</url>
+    <width>900</width>
+</WebLink>

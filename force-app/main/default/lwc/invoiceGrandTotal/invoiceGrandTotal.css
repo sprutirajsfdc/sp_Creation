@@ -1,0 +1,61 @@
+/* Container Styling */
+.container {
+    padding: 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+}
+
+/* Grand Total Label */
+.total-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+/* Grand Total Value */
+.total-value {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #0a74da;
+    margin: 5px 0 0 0;
+}
+
+/* Error Message */
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+/* Responsive Styling */
+@media screen and (max-width: 400px) {
+    .container {
+        padding: 10px;
+    }
+    .total-label {
+        font-size: 0.9rem;
+    }
+    .total-value {
+        font-size: 1.4rem;
+    }
+}
+.paid-message {
+    display: flex;
+    align-items: center;
+    background-color: #d4edda; /* light green */
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.paid-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.success-text {
+    color: #155724; /* dark green text */
+    font-weight: bold;
+}

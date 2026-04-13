@@ -1,0 +1,48 @@
+<template>
+    <lightning-card class="slds-box slds-var-p-around_medium">
+        <h2 class="section-title">Plan My Accounts</h2>
+        <p class="slds-text-body_small slds-var-p-bottom_large">Accounts owned by me</p>
+
+        <div class="slds-grid slds-wrap slds-grid_vertical-align-center">
+
+            <div class="slds-col slds-size_1-of-2 circle-viz-container">
+                <svg viewBox="0 0 100 100" class="circle-svg">
+                    <circle cx="50" cy="50" r="45" class="circle-background"></circle>
+                    
+                    <circle cx="50" cy="50" r="45" class="circle-progress"
+                            stroke-dasharray={strokeDasharray}
+                            stroke-dashoffset={strokeDashoffset}></circle>
+
+                    <text x="50" y="45" text-anchor="middle" class="circle-text-count">
+                        {accountData.total}
+                    </text>
+                    <text x="50" y="60" text-anchor="middle" class="circle-text-label">
+                        Accounts
+                    </text>
+                </svg>
+            </div>
+
+            <div class="slds-col slds-size_1-of-2 slds-var-p-left_large activity-legend">
+                <div class="legend-item">
+                    <span class="legend-dot upcoming"></span>
+                    <span><strong class="slds-var-m-right_x-small">{accountData.upcoming}</strong> Upcoming Activity</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-dot past"></span>
+                    <span><strong class="slds-var-m-right_x-small">{accountData.past}</strong> Past Activity</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-dot no-activity"></span>
+                    <span><strong class="slds-var-m-right_x-small">{accountData.noActivity}</strong> No Activity</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="slds-align_absolute-center slds-var-p-top_large">
+            <button class="view-button" onclick={handleViewAccounts}>
+                View Accounts
+            </button>
+        </div>
+
+    </lightning-card>
+</template>

@@ -1,0 +1,105 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 11-16-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <section class="slds-card">
+        <div class="slds-card__header slds-grid slds-p-around_small">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <span class="slds-icon_container slds-icon-standard-account" title="Edit Account">
+                        <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                            <use xlink:href="/_slds/icons/standard-sprite/svg/symbols.svg#account"></use>
+                        </svg>
+                    </span>
+                </div>
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title slds-truncate" title="Edit Account">
+                        Edit Account
+                    </h2>
+                </div>
+            </header>
+        </div>
+
+        <div class="slds-card__body slds-card__body_inner">
+            <template if:true={recordId}>
+                <lightning-record-edit-form
+                    object-api-name="Account"
+                    record-id={recordId}
+                    onsuccess={handleSuccess}
+                    onerror={handleError}
+                    onload={handleLoad}
+                    onsubmit={handleSubmit}
+                >
+                    <div class="slds-grid slds-wrap slds-gutters">
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input-field field-name="Name"></lightning-input-field>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input-field field-name="Phone"></lightning-input-field>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input-field field-name="Website"></lightning-input-field>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input-field field-name="Industry"></lightning-input-field>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-input-field field-name="Type"></lightning-input-field>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1">
+                            <div class="slds-grid slds-wrap slds-gutters">
+                                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                                    <lightning-input-field field-name="BillingStreet"></lightning-input-field>
+                                </div>
+                                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                                    <lightning-input-field field-name="BillingCity"></lightning-input-field>
+                                </div>
+                                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                                    <lightning-input-field field-name="BillingState"></lightning-input-field>
+                                </div>
+                                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                                    <lightning-input-field field-name="BillingPostalCode"></lightning-input-field>
+                                </div>
+                                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                                    <lightning-input-field field-name="BillingCountry"></lightning-input-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-m-top_medium slds-grid slds-grid_align-end">
+                        <lightning-button
+                            class="slds-m-right_small"
+                            variant="neutral"
+                            label="Cancel"
+                            onclick={handleCancel}
+                        ></lightning-button>
+                        <lightning-button
+                            variant="brand"
+                            type="submit"
+                            label="Save"
+                            disabled={isSaving}
+                        ></lightning-button>
+                        <template if:true={isSaving}>
+                            <lightning-spinner alternative-text="Saving" size="small" variant="brand"></lightning-spinner>
+                        </template>
+                    </div>
+                </lightning-record-edit-form>
+            </template>
+            <template if:false={recordId}>
+                <div class="slds-text-color_error">
+                    This component must be placed on an Account record page.
+                </div>
+            </template>
+        </div>
+    </section>
+</template>

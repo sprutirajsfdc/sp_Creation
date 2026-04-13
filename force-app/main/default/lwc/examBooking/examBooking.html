@@ -1,0 +1,167 @@
+<template>
+    <div class="main-layout">
+
+        <!-- LEFT SIDE -->
+        <div class="map-container">
+
+            <!-- STUDENT -->
+            <lightning-combobox
+                name="student"
+                label="Select Student"
+                value={selectedStudentId}
+                options={studentOptions}
+                onchange={handleStudentChange}
+                class="slds-m-bottom_medium">
+            </lightning-combobox>
+
+            <!-- EXAM -->
+            <lightning-combobox
+                name="exam"
+                label="Select Examination"
+                value={selectedExamId}
+                options={examOptions}
+                onchange={handleExamChange}
+                disabled={disableExam}
+                class="slds-m-bottom_medium">
+            </lightning-combobox>
+
+            <div class="proctor-desk">
+                EXAMINATION STAGE / PROCTOR DESK
+            </div>
+
+            <template lwc:if={allocationId}>
+
+                <div class="hall-icon-container">
+                    <img src="https://spcreation2-dev-ed--c.develop.vf.force.com/resource/1776062348000/seattop"
+                         alt="Hall Icon"
+                         class="hall-top-icon">
+                </div>
+
+                <br/>
+
+                <!-- GRID -->
+                <div class="grid-body">
+                    <template for:each={seatsGrid} for:item="row">
+                        <div key={row.rowLabel} class="seat-row">
+                            <div class="row-label">{row.rowLabel}</div>
+
+                            <template for:each={row.rowSeats} for:item="seat">
+
+                                <div key={seat.id} class="seat-wrapper">
+                                    <div class={seat.className}
+                                         onclick={handleSeatClick}
+                                         data-id={seat.id}>
+
+                                        <template lwc:if={seat.isSelected}>
+                                            <lightning-icon icon-name="utility:check"
+                                                size="x-small"
+                                                variant="inverse">
+                                            </lightning-icon>
+                                        </template>
+
+                                        <template lwc:else>
+                                            <img if:true={seat.useCustomIcon}
+                                                 src={seat.seatImg}
+                                                 class="custom-seat-icon" />
+                                        </template>
+
+                                    </div>
+                                </div>
+
+                                <div key={seat.id} if:true={seat.addAisle} class="aisle-space"></div>
+
+                            </template>
+                        </div>
+                    </template>
+                </div>
+
+                <!-- LEGEND -->
+                <div class="legend-container">
+                    <div class="legend-item">
+                        <img src={legendSeatImg} class="legend-icon" />
+                        <span>Available (Odd Seats)</span>
+                    </div>
+
+                    <div class="legend-item">
+                        <div class="legend-box selected">
+                            <lightning-icon icon-name="utility:check" size="xx-small" variant="inverse"></lightning-icon>
+                        </div>
+                        <span>Selected</span>
+                    </div>
+
+                    <div class="legend-item">
+                        <img src={legendSeatImg} class="legend-icon occupied-icon" />
+                        <span>Occupied</span>
+                    </div>
+
+                    <div class="legend-item">
+                        <div class="legend-circle restricted"></div>
+                        <span>Restricted (Even Seats)</span>
+                    </div>
+                </div>
+
+            </template>
+
+            <template lwc:else>
+                <div class="slds-text-align_center slds-p-around_large">
+                    Please select student and exam to view seats.
+                </div>
+            </template>
+
+        </div>
+
+        <!-- RIGHT SIDEBAR -->
+        <div class="sidebar">
+
+            <h3>
+                <lightning-icon icon-name="utility:info" size="xx-small"></lightning-icon>
+                Selected Seat Details
+            </h3>
+
+            <template lwc:if={selectedSeat}>
+
+                <div class="summary-box">
+                    <div>
+                        <p class="label">ROW / NUMBER</p>
+                        <p class="value">{selectedSeat.row} / {selectedSeat.col}</p>
+                    </div>
+
+                    <div class="slds-text-align_right">
+                        <p class="label">ACCESS TYPE</p>
+                        <p class="value">Standard Zone</p>
+                    </div>
+                </div>
+
+                <div class="pricing">
+                    <div class="price-row"><span>Booking Fee</span> <span>$12.00</span></div>
+                    <div class="price-row"><span>Service Charge</span> <span>$1.50</span></div>
+                    <hr/>
+                    <div class="total-amount"><span>Total Amount</span> <span>$13.50</span></div>
+                </div>
+
+            </template>
+
+            <template lwc:else>
+                <div class="empty-state slds-m-bottom_medium slds-text-color_weak">
+                    Select a seat on the map
+                </div>
+            </template>
+
+            <div class="protocol-box">
+                <lightning-icon icon-name="utility:warning" size="small"></lightning-icon>
+                <div>
+                    <strong>Seat Protocol</strong>
+                    <p>Mandatory distancing in effect. Only odd-numbered seats are available.</p>
+                </div>
+            </div>
+
+            <button class="confirm-btn"
+                    onclick={handleConfirm}
+                    disabled={noSeatSelected}>
+                Confirm Booking →
+            </button>
+
+        </div>
+
+    </div>
+</template>

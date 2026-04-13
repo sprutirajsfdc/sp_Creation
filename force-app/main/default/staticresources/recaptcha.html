@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+
+    <script>
+        let captchaWidgetId;
+
+        function onloadCallback() {
+            captchaWidgetId = grecaptcha.render('recaptcha-container', {
+                sitekey: 'YOUR_SITE_KEY',
+                callback: function (token) {
+                    // Send token securely to parent LWC
+                    parent.postMessage(
+                        {
+                            type: 'recaptchaToken',
+                            token: token
+                        },
+                        'YOUR_COMMUNITY_DOMAIN'
+                    );
+                },
+                'expired-callback': function () {
+                    parent.postMessage(
+                        {
+                            type: 'recaptchaExpired'
+                        },
+                        'YOUR_COMMUNITY_DOMAIN'
+                    );
+                }
+            });
+        }
+
+        // Allow reset from parent if needed
+        window.addEventListener('message', function (event) {
+            if (event.data === 'resetRecaptcha') {
+                grecaptcha.reset(captchaWidgetId);
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div id="recaptcha-container"></div>
+</body>
+</html>

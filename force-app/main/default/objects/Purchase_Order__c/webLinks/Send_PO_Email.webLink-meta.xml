@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Send_PO_Email</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Send PO Email</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>public with sharing class POPDFEmailSenderButton {
+
+    @AuraEnabled
+    public static String sendPOEmail(Id poId) {
+        try {
+            // Query PO and Vendor info
+            Purchase_Order__c po = [
+                SELECT Id, Name, CreatedDate, Total_Amount__c, Vendor__c,
+                       Vendor__r.Name
+                FROM Purchase_Order__c
+                WHERE Id = :poId
+                LIMIT 1
+            ];
+
+            // Generate PDF from VF Page
+            PageReference pdfPage = Page.PO; // Replace with your VF page name
+            pdfPage.getParameters().put(&apos;id&apos;, po.Id);
+            Blob pdfBlob = pdfPage.getContentAsPDF();
+
+            // Create Attachment
+            Messaging.EmailFileAttachment attachment = new Messaging.EmailFileAttachment();
+            attachment.setFileName(&apos;PO_&apos; + po.Name + &apos;.pdf&apos;);
+            attachment.setBody(pdfBlob);
+            attachment.setContentType(&apos;application/pdf&apos;);
+
+            // Create Email
+            Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+           mail.setToAddresses(new String[] {&apos;sprutiraj21@gmail.com&apos;}); // &lt;-- added email
+            mail.setSubject(&apos;Purchase Order: &apos; + po.Name);
+            mail.setPlainTextBody(
+                &apos;Dear &apos; + po.Vendor__r.Name + &apos;,\n\n&apos; +
+                &apos;Please find attached your Purchase Order PDF.\n\n&apos; +
+                &apos;PO Number: &apos; + po.Name + &apos;\n&apos; +
+                &apos;Date: &apos; + po.CreatedDate.format() + &apos;\n&apos; +
+                &apos;Total Amount: ₹&apos; + po.Total_Amount__c + &apos;\n\n&apos; +
+                &apos;Regards,\nSales Team&apos;
+            );
+            mail.setFileAttachments(new Messaging.EmailFileAttachment[] {attachment});
+
+            Messaging.sendEmail(new Messaging.SingleEmailMessage[] {mail});
+            return &apos;PO email sent successfully to &apos;;
+
+        } catch(Exception e){
+            return &apos;Error sending PO email: &apos; + e.getMessage();
+        }
+    }
+}</url>
+</WebLink>

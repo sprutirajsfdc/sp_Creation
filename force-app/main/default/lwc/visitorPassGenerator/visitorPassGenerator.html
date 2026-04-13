@@ -1,0 +1,103 @@
+<template>
+    <lightning-card title="Visitor Pass Generator">
+        
+        <!-- INPUT FORM -->
+        <div class="form-area">
+            <lightning-input 
+                label="Company Name" 
+                value={companyName} 
+                data-field="companyName"
+                onchange={handleInput}>
+            </lightning-input>
+
+            <lightning-input 
+                label="Visitor Name" 
+                value={visitorName} 
+                data-field="visitorName"
+                onchange={handleInput}>
+            </lightning-input>
+
+            <lightning-input 
+                label="Mobile Number" 
+                value={mobile} 
+                data-field="mobile"
+                onchange={handleInput}>
+            </lightning-input>
+
+            <lightning-input 
+                label="Purpose to Meet" 
+                value={purpose} 
+                data-field="purpose"
+                onchange={handleInput}>
+            </lightning-input>
+
+            <p class="slds-m-top_medium">Capture Visitor Photo</p>
+
+            <lightning-input 
+                type="file" 
+                accept="image/*" 
+                capture="camera"
+                onchange={handlePhoto}>
+            </lightning-input>
+
+            <template if:true={photoData}>
+                <img src={photoData} class="preview-img" />
+            </template>
+
+            <lightning-button 
+                label="Generate Pass Preview" 
+                variant="brand" 
+                class="slds-m-top_medium" 
+                onclick={generatePass}>
+            </lightning-button>
+            
+<template if:true={gatePassId}>
+    <div class="slds-m-top_medium">
+        <lightning-file-upload
+            label="Upload Visitor Photo"
+            name="visitorPhotoUpload"
+            accept=".jpg,.jpeg,.png"
+            record-id={gatePassId}
+            onuploadfinished={handleUploadFinished}>
+        </lightning-file-upload>
+    </div>
+</template>
+
+        </div>
+
+        <!-- ID CARD PREVIEW -->
+        <template if:true={showPass}>
+            <div id="printArea" class="id-card">
+
+                <!-- Company Logo -->
+                <img src={logo} class="logo" />
+
+                <!-- Company Name -->
+                <div class="company-name">{companyName}</div>
+
+                <!-- Visitor Pass Header -->
+                <div class="header">VISITOR PASS</div>
+
+                <!-- Visitor Details -->
+                <div class="details-box">
+                    <p><b>Name:</b> {visitorName}</p>
+                    <p><b>Mobile:</b> {mobile}</p>
+                    <p><b>Purpose:</b> {purpose}</p>
+                </div>
+
+                <!-- PHOTO AT BOTTOM -->
+                <div class="photo-box">
+                    <img src={photoData} class="photo" />
+                    <div class="photo-label">Visitor Photo</div>
+                </div>
+
+            </div>
+
+            <lightning-button 
+                label="Print Visitor Pass" 
+                class="slds-m-top_medium" 
+                onclick={printPass}>
+            </lightning-button>
+        </template>
+    </lightning-card>
+</template>

@@ -1,0 +1,14 @@
+<template>
+    <lightning-card title="Listing Location" icon-name="standard:location">
+        <div class="slds-p-around_medium">
+            <!-- Check if mapMarkers has data before rendering -->
+            <template if:true={mapMarkers}>
+                <lightning-map
+                    map-markers={mapMarkers}
+                    zoom-level="15"
+                    list-view="hidden">
+                </lightning-map>
+            </template>
+        </div>
+    </lightning-card>
+</template>

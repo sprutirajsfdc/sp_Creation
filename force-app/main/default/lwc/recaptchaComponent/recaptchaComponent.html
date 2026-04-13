@@ -1,0 +1,27 @@
+<template>
+    <lightning-card title="Security Verification">
+        <div class="slds-p-around_medium">
+
+            <iframe
+                src={iframeUrl}
+                width="100%"
+                height="120"
+                frameborder="0"
+                onload={handleIframeLoad}>
+            </iframe>
+
+            <template if:true={isVerified}>
+                <p class="slds-text-color_success slds-m-top_small">
+                    ✓ Verification Successful
+                </p>
+            </template>
+
+            <template if:true={errorMessage}>
+                <p class="slds-text-color_error slds-m-top_small">
+                    {errorMessage}
+                </p>
+            </template>
+
+        </div>
+    </lightning-card>
+</template>

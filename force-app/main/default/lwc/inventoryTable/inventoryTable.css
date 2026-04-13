@@ -1,0 +1,22 @@
+/* Flex container for combobox + button */
+.slds-flex {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+/* Space between combobox and button */
+.slds-justify_between {
+    justify-content: space-between;
+}
+
+/* Optional: make combobox wider */
+.custom-combobox {
+    flex: 1;
+    margin-right: 1rem;
+}
+
+/* Optional: button styling */
+.custom-button {
+    min-width: 160px;
+}

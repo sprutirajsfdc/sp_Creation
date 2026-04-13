@@ -1,0 +1,129 @@
+<apex:page controller="AdmitCardController" renderAs="pdf"
+           applyHtmlTag="false" applyBodyTag="false"
+           showHeader="false" standardStylesheets="false">
+    
+    <head>
+        <title>Admit Card - {!booking.Student__r.Name}</title>
+    </head>
+    
+    <body style="font-family: Arial, sans-serif; color: #333; margin: 0; padding: 30px; background: #fff;">
+        
+        <!-- LOGO -->
+        <div style="position: absolute; top: 20px; left: 30px;">
+            <img src="{!URLFOR($Resource.board)}" style="height: 50px;" />
+        </div><div style="position: absolute; top: 20px; right: 30px; font-size: 12px; color: #333;">
+    <strong>Date:</strong>
+    <apex:outputText value="{0,date,dd MMMM yyyy}">
+        <apex:param value="{!TODAY()}" />
+    </apex:outputText>
+</div>
+        
+        <!-- HEADER -->
+        <div style="text-align: center; margin-top: 40px; margin-bottom: 25px;">
+            <h2 style="margin: 0; color: #1D52AC;">Examination Admit Card</h2>
+            <span style="font-size: 12px; color: #777;">DR. AMBEDKAR CENTRE OF EXCELLENCE, TEZPUR UNIVERSITY</span><br/>
+            <span style="font-size: 12px; font-weight:bold;">
+                Venue: Dean’s Building, School of Engineering, Tezpur University
+            </span>
+        </div>
+        
+        <!-- CONTENT -->
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                
+                <!-- PHOTO -->
+                <td style="width: 130px; vertical-align: top;">
+                    <div style="width: 120px; height: 150px; border: 1px solid #ccc;">
+                        <img src="{!studentPhotoUrl}" style="width: 100%; height: 100%;" />
+                    </div>
+                </td>
+                
+                <!-- DETAILS TABLE -->
+                <td style="padding-left: 20px; vertical-align: top;">
+                    
+                    <div style="background: #EEF3FF; padding: 10px 15px; border-left: 5px solid #1D52AC; margin-bottom: 15px;">
+                        <span style="font-size: 18px; font-weight: bold; color: #1D52AC;">
+                            {!booking.Exam__r.Name}
+                        </span><br/>
+                        <span style="font-size: 12px;">
+                            {!booking.Exam__r.Subject__c} - {!booking.Exam__r.Subject_Code__c}
+                        </span>
+                    </div>
+
+                    <!-- STUDENT INFO TABLE -->
+                    <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd;">
+                        
+                        <tr>
+                            <td style="padding: 8px; width: 180px; font-size: 11px; color: #777;">Candidate Name</td>
+                            <td style="padding: 8px; font-weight: bold;">{!booking.Student__r.Name}</td>
+                        </tr>
+                        
+                        <tr>
+                            <td style="padding: 8px; font-size: 11px; color: #777;">Roll Number</td>
+                            <td style="padding: 8px; font-weight: bold;">{!booking.Student__r.Roll_Number__c}</td>
+                        </tr>
+                        
+                        <tr>
+                            <td style="padding: 8px; font-size: 11px; color: #777;">Exam Date</td>
+                            <td style="padding: 8px; font-weight: bold;">
+                                <apex:outputText value="{0,date,MMMM d, yyyy}">
+                                    <apex:param value="{!booking.Exam__r.Date__c}" />
+                                </apex:outputText>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td style="padding: 8px; font-size: 11px; color: #777;">Exam Center</td>
+                            <td style="padding: 8px; font-weight: bold;">
+                                {!booking.Seat_Allocation__r.Exam_Center__r.Name}
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td style="padding: 8px; font-size: 11px; color: #777;">Seat Number</td>
+                            <td style="padding: 8px; font-size: 18px; font-weight: bold; color: #1D52AC;">
+                                {!booking.Seat_Number__c}
+                            </td>
+                        </tr>
+                        
+                    </table>
+                    
+                </td>
+            </tr>
+        </table>
+        
+        <!-- INSTRUCTIONS -->
+        <div style="margin-top: 30px;">
+            <h4 style="margin-bottom: 10px; color: #1D52AC;">Instructions</h4>
+            
+            <ol style="padding-left: 18px; font-size: 11px; line-height: 1.6;">
+                <li>Only BLACK or BLUE ball pens are permitted in the exam hall. Mobile phone, i-pad, calculator or any other such devices will not be allowed to be carried to the examination hall.</li>
+                <li>Admission to the Screening Test is purely provisional and the candidate is liable to be cancelled at any point in case of misconduct / improper information provided.</li>
+                <li>Candidates must bring their Admit Cards to the Test Venue to secure admission.</li>
+                <li>Candidates are to produce photo identity proof: Aadhaar Card, PAN Card, Voter ID Card, Driving License.</li>
+                <li>Prohibited items such as books, papers, cell phones, erasers (solid or liquid), calculators or any electronic gadgets or objectionable materials are not allowed in the Test Hall. There will not be any provision for depositing mobile phones / electronic items, etc. in the Test Hall. Candidates shall keep them in appropriate place(s) at their own risk.</li>
+                <li>No candidate will be admitted after 15 minutes from the start of Test.</li>
+                <li>Candidates will have to follow the COVID-19 protocols in force.</li>
+            </ol>
+        </div>
+        
+        <!-- SIGNATURE -->
+        <div style="margin-top: 50px;">
+            <table style="width: 100%;">
+                <tr>
+                    <td style="text-align: left;">
+                        <div style="border-top: 1px solid #333; width: 200px; padding-top: 5px;">
+                            <span style="font-size: 11px;">Candidate Signature</span>
+                        </div>
+                    </td>
+                    <td style="text-align: right;">
+                        <div style="border-top: 1px solid #333; width: 200px; padding-top: 5px;">
+                            <span style="font-size: 11px;">Controller of Examinations</span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+    </body>
+</apex:page>

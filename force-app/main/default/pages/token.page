@@ -1,0 +1,53 @@
+<apex:page controller="TokenVFController" renderAs="pdf" showHeader="false" sidebar="false">
+
+    <div style="
+        width: 300px;
+        margin: auto;
+        padding: 20px;
+        border: 2px solid black;
+        border-radius: 10px;
+        text-align: center;
+        font-family: Arial;
+        position: relative;
+    ">
+
+        <!-- Stamp Image -->
+        <img src="https://spcreation2-dev-ed--c.develop.vf.force.com/resource/1774416338000/stamp"
+             style="
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                width: 60px;
+                height: 60px;
+                opacity: 0.7;
+             "
+        />
+
+        <!-- Token Number -->
+        <h2 style="font-size:40px; font-weight:bold; margin:10px 0;">
+            {!token.Token_Number__c}
+        </h2>
+
+        <hr/>
+
+        <!-- Counter Info -->
+        <p style="margin:5px 0;">
+            <strong>Counter Name:</strong><br/>
+            {!token.Counter__r.Name}
+        </p>
+
+        <p style="margin:5px 0;">
+            <strong>Counter Number:</strong><br/>
+            {!token.Counter__r.Counter_Number__c}
+        </p>
+
+        <hr/>
+
+        <!-- Timestamp -->
+        <p style="margin-top:10px; font-size:12px;">
+            {!currentTime}
+        </p>
+
+    </div>
+
+</apex:page>
