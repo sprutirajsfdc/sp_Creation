@@ -1,0 +1,199 @@
+<apex:page renderAs="pdf"
+           standardController="Academic_Course__c"
+           extensions="AdmissionReceiptController">
+
+    <!-- ================= PAGE 1 ================= -->
+
+    <div style="text-align:center; border-bottom:2px solid #333; padding-bottom:10px;">
+
+        <img src="https://spcreation2-dev-ed--c.develop.vf.force.com/resource/1776150963000/college"
+             style="height:80px;" />
+
+        <h2 style="margin:5px 0; font-family:Arial; font-size:20px;">
+            Manipal Institute of Technology
+        </h2>
+
+        <div style="font-size:12px; color:#555;">
+            Academic Admission Receipt
+        </div>
+
+    </div>
+
+    <!-- ================= BODY PAGE 1 ================= -->
+
+    <div style="font-family:Arial; font-size:13px; padding:15px;">
+
+        <table style="width:100%; border-collapse:collapse;">
+
+            <!-- Student Info -->
+            <tr>
+                <td colspan="2" style="background:#f2f2f2; padding:8px; font-weight:bold; border:1px solid #ddd;">
+                    Student Information
+                </td>
+            </tr>
+
+            <tr>
+                <td style="width:40%; border:1px solid #ddd; padding:8px;"><b>Student Name</b></td>
+                <td style="border:1px solid #ddd; padding:8px; background:#e8f4ff; font-weight:bold; color:#003366;">
+                    {!courseRec.Student__r.Name}
+                </td>
+            </tr>
+
+            <tr>
+                <td style="border:1px solid #ddd; padding:8px;"><b>Roll Number</b></td>
+                <td style="border:1px solid #ddd; padding:8px; background:#fff3cd; font-weight:bold;">
+                    {!courseRec.Student__r.Roll_Number__c}
+                </td>
+            </tr>
+
+            <!-- Course Info -->
+            <tr>
+                <td colspan="2" style="background:#f2f2f2; padding:8px; font-weight:bold; border:1px solid #ddd;">
+                    Course Details
+                </td>
+            </tr>
+
+            <tr>
+                <td style="border:1px solid #ddd; padding:8px;"><b>Course Name</b></td>
+                <td style="border:1px solid #ddd; padding:8px; background:#dff0d8; font-weight:bold; color:#2f6f2f;">
+                    {!courseRec.Name}
+                </td>
+            </tr>
+
+            <tr><td style="border:1px solid #ddd; padding:8px;"><b>Course Code</b></td>
+                <td style="border:1px solid #ddd; padding:8px;">{!courseRec.Course_Code__c}</td>
+            </tr>
+
+            <tr><td style="border:1px solid #ddd; padding:8px;"><b>Department</b></td>
+                <td style="border:1px solid #ddd; padding:8px;">{!courseRec.Department__c}</td>
+            </tr>
+
+            <tr><td style="border:1px solid #ddd; padding:8px;"><b>Course Type</b></td>
+                <td style="border:1px solid #ddd; padding:8px;">{!courseRec.Course_Type__c}</td>
+            </tr>
+
+            <tr><td style="border:1px solid #ddd; padding:8px;"><b>Batch Time</b></td>
+                <td style="border:1px solid #ddd; padding:8px;">{!courseRec.Batch_Time__c}</td>
+            </tr>
+
+            <tr><td style="border:1px solid #ddd; padding:8px;"><b>Duration</b></td>
+                <td style="border:1px solid #ddd; padding:8px;">{!courseRec.Duration__c}</td>
+            </tr>
+
+            <tr><td style="border:1px solid #ddd; padding:8px;"><b>Start Date</b></td>
+                <td style="border:1px solid #ddd; padding:8px;">{!startDateFormatted}</td>
+            </tr>
+
+            <tr><td style="border:1px solid #ddd; padding:8px;"><b>End Date</b></td>
+                <td style="border:1px solid #ddd; padding:8px;">{!endDateFormatted}</td>
+            </tr>
+
+            <!-- Fee Info -->
+            <tr>
+                <td colspan="2" style="background:#f2f2f2; padding:8px; font-weight:bold; border:1px solid #ddd;">
+                    Fee Details
+                </td>
+            </tr>
+
+            <tr><td style="border:1px solid #ddd; padding:8px;"><b>Tuition Fees</b></td>
+                <td style="border:1px solid #ddd; padding:8px;">{!courseRec.Tution_Fees__c}</td>
+            </tr>
+
+            <tr><td style="border:1px solid #ddd; padding:8px;"><b>Admission Fees</b></td>
+                <td style="border:1px solid #ddd; padding:8px;">{!courseRec.Admission_Fees__c}</td>
+            </tr>
+
+            <tr><td style="border:1px solid #ddd; padding:8px;"><b>Scholarship Discount</b></td>
+                <td style="border:1px solid #ddd; padding:8px;">{!courseRec.Scholrship_Discount__c}</td>
+            </tr>
+
+            <tr>
+                <td style="border:1px solid #ddd; padding:8px; font-size:14px;"><b>Total Fees</b></td>
+                <td style="border:1px solid #ddd; padding:8px; font-size:14px;"><b>{!courseRec.Total_Fees__c}</b></td>
+            </tr>
+
+        </table>
+
+    </div>
+
+    <br/>
+
+    <div style="border-top:1px solid #000; width:160px;margin-left:auto;">
+        <div style="font-weight:bold; margin-top:3px;">
+            Authority Signature
+        </div>
+    </div>
+
+    <br/><br/>
+
+    <div style="text-align:center; font-size:11px;
+                border-top:1px solid #ccc; padding:8px;">
+        @ Manipal Institute of Technology — All Rights Reserved
+    </div>
+
+    <!-- ================= PAGE BREAK ================= -->
+    <div style="page-break-before:always;"></div>
+
+    <!-- ================= PAGE 2 ================= -->
+
+    <div style="font-family:Arial; font-size:13px; padding:25px; line-height:1.6;">
+
+        <h2 style="text-align:center; font-size:18px; margin-bottom:15px;">
+            Program Structure and Academic Guidelines
+        </h2>
+
+        <p>
+            A Bachelor of Technology (B.Tech) in Computer Science and Engineering is a four-year undergraduate program
+            typically divided into eight semesters. It builds strong foundations in computing, mathematics, and software systems.
+        </p>
+
+        <h3>Year 1: Foundational Sciences and Engineering</h3>
+        <ul>
+            <li>Engineering Mathematics (Calculus, Linear Algebra)</li>
+            <li>Physics, Chemistry, English Communication</li>
+            <li>Basic Electrical and Electronics Engineering</li>
+            <li>Engineering Graphics</li>
+            <li>Programming Fundamentals (C / Python)</li>
+        </ul>
+
+        <h3>Year 2: Core Computer Science</h3>
+        <ul>
+            <li>Data Structures and Algorithms</li>
+            <li>Computer Organization and Architecture</li>
+            <li>Operating Systems</li>
+            <li>Database Management Systems</li>
+            <li>Object-Oriented Programming (Java / C++)</li>
+        </ul>
+
+        <h3>Year 3: Advanced Computing</h3>
+        <ul>
+            <li>Computer Networks</li>
+            <li>Software Engineering</li>
+            <li>Theory of Computation</li>
+            <li>Artificial Intelligence and Machine Learning</li>
+            <li>Electives: Cloud Computing / IoT / Cybersecurity</li>
+        </ul>
+
+        <h3>Year 4: Project and Specialization</h3>
+        <ul>
+            <li>Advanced Electives (Deep Learning, Blockchain, Big Data)</li>
+            <li>Industrial Training and Ethics</li>
+            <li>Seminars and Technical Presentations</li>
+            <li>Final Year Capstone Project</li>
+        </ul>
+
+        <h3>Popular Specializations</h3>
+        <ul>
+            <li>Artificial Intelligence and Machine Learning</li>
+            <li>Data Science</li>
+            <li>Cybersecurity</li>
+            <li>Full Stack Development</li>
+        </ul>
+
+        <p style="margin-top:20px; font-style:italic;">
+            Note: Curriculum may vary slightly based on university updates and electives offered each semester.
+        </p>
+
+    </div>
+
+</apex:page>

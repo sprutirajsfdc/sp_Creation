@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Department__c</fullName>
+    <label>Department</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Manipal School of Information Sciences (MSIS)</fullName>
+                <default>false</default>
+                <label>Manipal School of Information Sciences (MSIS)</label>
+            </value>
+            <value>
+                <fullName>Manipal School of Natural Sciences (MCNS)</fullName>
+                <default>false</default>
+                <label>Manipal School of Natural Sciences (MCNS)</label>
+            </value>
+            <value>
+                <fullName>Manipal School of Architecture &amp; Planning (MSAP)</fullName>
+                <default>false</default>
+                <label>Manipal School of Architecture &amp; Planning (MSAP)</label>
+            </value>
+            <value>
+                <fullName>Department of Design (DoD)</fullName>
+                <default>false</default>
+                <label>Department of Design (DoD)</label>
+            </value>
+            <value>
+                <fullName>Manipal Institute of Management (MIM)</fullName>
+                <default>false</default>
+                <label>Manipal Institute of Management (MIM)</label>
+            </value>
+            <value>
+                <fullName>T A Pai Management Institute (TAPMI)</fullName>
+                <default>false</default>
+                <label>T A Pai Management Institute (TAPMI)</label>
+            </value>
+            <value>
+                <fullName>Welcomgroup Graduate School of Hotel Administration (WGSHA)</fullName>
+                <default>false</default>
+                <label>Welcomgroup Graduate School of Hotel Administration (WGSHA)</label>
+            </value>
+            <value>
+                <fullName>Department of Atomic &amp; Molecular Physics (DAMP)</fullName>
+                <default>false</default>
+                <label>Department of Atomic &amp; Molecular Physics (DAMP)</label>
+            </value>
+            <value>
+                <fullName>Department of Commerce (DoC)</fullName>
+                <default>false</default>
+                <label>Department of Commerce (DoC)</label>
+            </value>
+            <value>
+                <fullName>Department of Public Policy (DPP)</fullName>
+                <default>false</default>
+                <label>Department of Public Policy (DPP)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
