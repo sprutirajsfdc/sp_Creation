@@ -1,0 +1,169 @@
+:host {
+    --brand-blue: #1e62d0;
+    --brand-green: #2ecc71;
+    --brand-amber: #f39c12;
+    --brand-red: #e74c3c;
+    --bg-light: #f8f9fa;
+    --text-main: #2c3e50;
+    --text-sub: #7f8c8d;
+}
+
+.dashboard-container {
+    background: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header & Search */
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.sub-title {
+    color: var(--text-sub);
+    font-size: 0.9rem;
+}
+
+.search-area {
+    width: 250px;
+}
+
+/* Summary Stats */
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    padding: 1rem 1.5rem;
+}
+
+.stat-card {
+    padding: 1.2rem;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border-top: 4px solid #ddd;
+}
+
+.stat-card.total { border-top-color: var(--brand-blue); }
+.stat-card.occupancy { border-top-color: var(--brand-blue); }
+.stat-card.cleaning-stat { border-top-color: var(--brand-amber); }
+.stat-card.maintenance-stat { border-top-color: var(--brand-red); }
+
+.stat-label { font-size: 0.75rem; font-weight: 600; color: var(--text-sub); margin-bottom: 0.5rem; }
+.stat-number { font-size: 1.8rem; font-weight: 800; color: var(--text-main); }
+.stat-context, .stat-trend { font-size: 0.75rem; margin-left: 8px; color: var(--text-sub); }
+.stat-trend { color: var(--brand-blue); font-weight: bold; }
+
+/* Legend */
+.legend-bar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+.dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; margin-right: 5px; }
+.dot.available { background: var(--brand-green); }
+.dot.occupied { background: var(--brand-blue); }
+.dot.cleaning { background: var(--brand-amber); }
+.dot.maintenance { background: #95a5a6; }
+
+/* Room Grid & Floor */
+.floor-divider {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem 1.5rem 0.5rem;
+    font-weight: bold;
+    color: var(--text-sub);
+}
+
+.floor-divider hr { flex: 1; margin-left: 15px; border: 0; border-top: 1px solid #eee; }
+
+.room-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+}
+
+.room-card {
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border-left: 6px solid #ddd;
+    transition: transform 0.2s;
+}
+
+.room-card:hover { transform: translateY(-3px); }
+
+/* Status Classes */
+.room-card.available { border-left-color: var(--brand-green); }
+.room-card.occupied { border-left-color: var(--brand-blue); background: var(--brand-blue); color: #fff; }
+.room-card.cleaning { border-left-color: var(--brand-amber); background: #fff9eb; }
+.room-card.maintenance { border-left-color: #95a5a6; background: #f4f4f4; }
+
+.room-content { display: flex; padding: 10px; }
+.room-image-placeholder {
+    width: 60px; height: 60px;
+    background: #e0e0e0; border-radius: 4px;
+    margin-right: 12px;
+}
+
+.room-details { flex: 1; }
+.room-header { display: flex; justify-content: space-between; align-items: center; }
+.room-num { font-weight: bold; font-size: 1.1rem; }
+.status-tag { font-size: 0.65rem; text-transform: uppercase; font-weight: bold; }
+.room-type-text { font-size: 0.75rem; margin-top: 4px; opacity: 0.8; }
+.room-view-text { font-size: 0.65rem; opacity: 0.6; }
+
+/* Occupied overrides */
+.occupied .room-num, .occupied .status-tag, .occupied .room-type-text { color: white; }
+
+/* Responsive Media Queries */
+@media screen and (max-width: 1200px) {
+    .room-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media screen and (max-width: 992px) {
+    .summary-grid { grid-template-columns: repeat(2, 1fr); }
+    .room-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media screen and (max-width: 600px) {
+    .header-section { flex-direction: column; align-items: flex-start; }
+    .search-area { width: 100%; margin-top: 1rem; }
+    .room-grid { grid-template-columns: 1fr; }
+}
+/* Replace the placeholder CSS with this */
+.room-image-container {
+    width: 70px;
+    height: 70px;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+.room-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This crops the image to fill the square perfectly */
+    border-radius: 4px;
+}
+
+/* Ensure the room card content handles the image well */
+.room-content {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+}
+
+/* Keep the rest of the previous CSS for grid and status colors */

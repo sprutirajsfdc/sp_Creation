@@ -1,0 +1,129 @@
+<apex:page controller="BookingReceiptController" renderAs="pdf" showHeader="false" sidebar="false">
+
+<div style="font-family: Arial; font-size:11px; color:#000;">
+
+    <!-- HEADER -->
+    <div style="border:1px solid #000; padding:10px;">
+
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            
+            <img src="https://spcreation2-dev-ed--c.develop.vf.force.com/resource/1776658903000/hotellogo"
+                 style="height:50px;" />
+
+            <div style="text-align:right;">
+                <h2 style="margin:0;">Booking Confirmation</h2>
+                <div style="font-size:10px;">
+                    Please present either an electronic or paper copy at check-in
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- GREY INFO BAR -->
+    <div style="background:#e6e6e6; padding:8px; margin-top:5px; font-size:10px;">
+        <span>Booking confirmation issued by hotel system</span>
+    </div>
+
+    <!-- MAIN DETAILS -->
+    <div style="border:1px solid #000; margin-top:10px; padding:10px;">
+
+        <table style="width:100%; font-size:11px;">
+            <tr>
+
+                <!-- LEFT SIDE -->
+                <td style="width:50%; vertical-align:top;">
+
+                    <p><strong>Booking ID:</strong> {!booking.Id}</p>
+                    <p><strong>Guest Name:</strong> {!contact.LastName}</p>
+                    <p><strong>Email:</strong> {!contact.Email}</p>
+                    <p><strong>Phone:</strong> {!contact.Phone}</p>
+
+                    <p><strong>Hotel Address:</strong><br/>
+                        {!hotel.Address__c}
+                    </p>
+
+                </td>
+
+                <!-- RIGHT SIDE -->
+                <td style="width:50%; vertical-align:top;">
+
+                    <p><strong>Room Type:</strong> {!room.Room_Type__c}</p>
+                    <p><strong>Room Number:</strong> {!room.Room_Number__c}</p>
+                    <p><strong>Price/Night:</strong> ₹{!room.Price_Per_Night__c}</p>
+                    <p><strong>Nights:</strong> {!stay.No_of_day_Stay__c}</p>
+
+                    <p><strong>Total Price:</strong> ₹{!stay.Total_Price__c}</p>
+
+                </td>
+
+            </tr>
+        </table>
+
+    </div>
+
+    <!-- POLICY BOX -->
+    <div style="border:1px solid #000; margin-top:10px; padding:10px; font-size:10px;">
+
+        <strong>Cancellation Policy:</strong><br/>
+        Any cancellation within 1 day prior to arrival will be charged full amount.<br/>
+        No-show will be charged 100% of booking value.
+
+    </div>
+
+    <!-- AMENITIES -->
+    <div style="border:1px solid #000; margin-top:10px; padding:10px; font-size:10px;">
+
+        <strong>Benefits Included:</strong> Parking, Free WiFi<br/>
+        <strong>Amenities:</strong> {!hotel.Amenities__c}
+
+    </div>
+
+    <!-- DATES SECTION -->
+    <div style="border:1px solid #000; margin-top:10px; padding:10px; font-size:11px;">
+
+        <table style="width:100%;">
+            <tr>
+                <td><strong>Arrival:</strong> {!formattedCheckIn}</td>
+                <td><strong>Departure:</strong> {!formattedCheckOut}</td>
+            </tr>
+        </table>
+
+    </div>
+
+    <!-- STAMP AREA -->
+    <div style="border:1px solid #000; margin-top:10px; padding:10px;">
+
+        <table style="width:100%;">
+            <tr>
+
+                <td style="width:60%; font-size:10px;">
+                    <strong>Remarks:</strong><br/>
+                    Included taxes and fees apply as per hotel policy.
+                </td>
+
+                <td style="width:40%; text-align:center;">
+                    <div style="height:60px; border:1px dashed #000;"></div>
+                    <div style="font-size:10px;">Authorized Stamp/ Signature</div>
+                </td>
+
+            </tr>
+        </table>
+
+    </div>
+
+    <!-- FOOTER NOTES -->
+    <div style="border:1px solid #000; margin-top:10px; padding:10px; font-size:9px; line-height:1.4;">
+
+        <strong>Important Notes:</strong><br/>
+        - Valid ID required at check-in<br/>
+        - Same card used for booking must be presented<br/>
+        - Early check-in subject to availability<br/>
+        - Hotel reserves rights for verification
+
+    </div>
+
+</div>
+
+</apex:page>

@@ -1,0 +1,210 @@
+<template>
+    <div class="container slds-p-around_large">
+
+        <!-- HEADER -->
+        <div class="header slds-m-bottom_large">
+            <p class="brand-text">CONCIERGE DESK</p>
+            <h1 class="main-title">Guest Check-in</h1>
+            <p class="sub-title">
+                Initialize guest residency and room allocation. Ensure all documents are verified.
+            </p>
+        </div>
+
+        <div class="slds-grid slds-gutters">
+
+            <!-- LEFT SIDE -->
+            <div class="slds-col slds-size_2-of-3">
+
+                <!-- GUEST INFO -->
+                <lightning-card title="Guest Identity" icon-name="utility:user">
+
+                    <div class="slds-grid slds-wrap slds-p-around_medium">
+
+                        <div class="slds-col slds-size_1-of-2 slds-p-around_xx-small">
+                            <lightning-input
+                                label="FULL GUEST NAME"
+                                value={guestName}
+                                onchange={handleInputChange}
+                                name="guestName">
+                            </lightning-input>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-2 slds-p-around_xx-small">
+                            <lightning-combobox
+                                label="IDENTIFICATION PROOF"
+                                options={idOptions}
+                                value={idType}
+                                onchange={handleInputChange}
+                                name="idType">
+                            </lightning-combobox>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-2 slds-p-around_xx-small">
+                            <lightning-input
+                                label="CONTACT EMAIL"
+                                type="email"
+                                value={email}
+                                onchange={handleInputChange}
+                                name="email">
+                            </lightning-input>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-2 slds-p-around_xx-small">
+                            <lightning-input
+                                label="PHONE NUMBER"
+                                type="tel"
+                                value={phone}
+                                onchange={handleInputChange}
+                                name="phone">
+                            </lightning-input>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-2 slds-p-around_xx-small">
+                            <lightning-input
+                                label="NUMBER OF GUESTS"
+                                type="number"
+                                value={numberOfGuests}
+                                onchange={handleInputChange}
+                                name="numberOfGuests">
+                            </lightning-input>
+                        </div>
+
+                        <!-- FILE UPLOAD -->
+                        <div class="slds-col slds-size_1-of-2 slds-p-around_xx-small">
+                            <lightning-file-upload
+                                label="UPLOAD IDENTITY DOCUMENT"
+                                name="fileUploader"
+                                record-id={contactId}
+                                accept=".jpg,.jpeg,.png,.pdf"
+                                onuploadfinished={handleUploadFinished}>
+                            </lightning-file-upload>
+                        </div>
+
+                    </div>
+                </lightning-card>
+
+                <!-- ROOMS -->
+                <div class="slds-m-top_large">
+
+                    <div class="slds-grid slds-grid_align-spread slds-m-bottom_small">
+                        <h2 class="section-title">
+                            <lightning-icon icon-name="utility:hotel_open" size="small"></lightning-icon>
+                            Room Selection
+                        </h2>
+                        <span class="badge">{availableCount} Available</span>
+                    </div>
+
+                    <div class="slds-grid slds-gutters">
+
+                        <template for:each={rooms} for:item="room">
+                            <div key={room.Id} class="slds-col slds-size_1-of-2">
+
+                                <div class={room.selectionClass}
+                                     data-id={room.Id}
+                                     onclick={handleRoomSelect}>
+
+                                    <div class="room-img-container">
+                                        <img src={room.imageUrl} alt="Room" />
+                                        <span class="room-badge">{room.Status__c}</span>
+                                    </div>
+
+                                    <div class="slds-p-around_medium">
+
+                                        <div class="slds-grid slds-grid_align-spread">
+                                            <span class="room-name">{room.Room_Type__c}</span>
+                                            <span class="room-price-text">
+                                                ₹{room.Price_Per_Night__c}/night
+                                            </span>
+                                        </div>
+
+                                        <div class="room-meta slds-m-top_x-small">
+                                            <span>Room {room.Room_Number__c}</span>
+                                            <span class="slds-float_right">
+                                                Floor {room.floorNumber}
+                                            </span>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </template>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT SIDE -->
+            <div class="slds-col slds-size_1-of-3">
+
+                <lightning-card>
+
+                    <div class="slds-p-around_medium">
+
+                        <h2 class="summary-title">Stay Summary</h2>
+
+                        <!-- DATES -->
+                        <div class="date-picker-group slds-m-vertical_medium">
+
+                            <lightning-input type="date"
+                                             label="CHECK IN"
+                                             name="checkin"
+                                             value={checkInDate}
+                                             onchange={handleDateChange}>
+                            </lightning-input>
+
+                            <lightning-input type="date"
+                                             label="CHECK OUT"
+                                             name="checkout"
+                                             value={checkOutDate}
+                                             onchange={handleDateChange}>
+                            </lightning-input>
+
+                        </div>
+
+                        <div class="summary-row">
+                            <span>Duration</span>
+                            <span>{duration} Nights</span>
+                        </div>
+
+                        <hr/>
+
+                        <div class="summary-row">
+                            <span>{selectedRoomType}</span>
+                            <span>₹{baseTotal}</span>
+                        </div>
+
+                        <div class="summary-row">
+                            <span>Tax (12%)</span>
+                            <span>₹{taxAmount}</span>
+                        </div>
+
+                        <div class="summary-row promo">
+                            <span>Spa Credit</span>
+                            <span>-₹{spaCredit}</span>
+                        </div>
+
+                        <hr/>
+
+                        <div class="slds-grid slds-grid_align-spread">
+                            <strong>Total</strong>
+                            <strong>₹{grandTotal}</strong>
+                        </div>
+
+                        <!-- CONFIRM BUTTON -->
+                        <button class="confirm-btn slds-m-top_large"
+                                onclick={handleConfirmCheckIn}>
+                            Confirm Check-in
+                        </button>
+
+                    </div>
+
+                </lightning-card>
+
+            </div>
+
+        </div>
+
+    </div>
+</template>

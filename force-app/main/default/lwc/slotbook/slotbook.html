@@ -1,0 +1,37 @@
+<template>
+    <lightning-card title="New Booking">
+        
+        <!-- Date Picker -->
+        <lightning-input 
+            type="date" 
+            label="Select Date"
+            value={selectedDate}
+            onchange={handleDateChange}>
+        </lightning-input>
+
+        <!-- Time Slots -->
+        <div class="slots-container">
+            <template for:each={timeSlots} for:item="slot">
+                <button
+                    key={slot.time}
+                    class={slot.className}
+                    disabled={slot.isFull}
+                    data-time={slot.time}
+                    onclick={handleSlotClick}>
+                    
+                    {slot.time}
+                </button>
+            </template>
+        </div>
+
+        <!-- Submit -->
+        <div class="submit-btn">
+            <lightning-button 
+                label="Submit"
+                variant="brand"
+                onclick={handleSubmit}>
+            </lightning-button>
+        </div>
+
+    </lightning-card>
+</template>

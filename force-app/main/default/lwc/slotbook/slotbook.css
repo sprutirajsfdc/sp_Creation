@@ -1,0 +1,30 @@
+.slots-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.slot {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #5a4bff;
+    cursor: pointer;
+}
+
+.available {
+    background-color: white;
+    color: #5a4bff;
+}
+
+.available:hover {
+    background-color: #5a4bff;
+    color: white;
+}
+
+.disabled {
+    background-color: #e0e0e0;
+    color: #999;
+    border: none;
+    cursor: not-allowed;
+}

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Amenities__c</fullName>
+    <label>Amenities</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Minibar</fullName>
+                <default>false</default>
+                <label>Minibar</label>
+            </value>
+            <value>
+                <fullName>Tea and coffee facilities</fullName>
+                <default>false</default>
+                <label>Tea and coffee facilities</label>
+            </value>
+            <value>
+                <fullName>Wardrobe and hangers</fullName>
+                <default>false</default>
+                <label>Wardrobe and hangers</label>
+            </value>
+            <value>
+                <fullName>Luggage rack</fullName>
+                <default>false</default>
+                <label>Luggage rack</label>
+            </value>
+            <value>
+                <fullName>Safe</fullName>
+                <default>false</default>
+                <label>Safe</label>
+            </value>
+            <value>
+                <fullName>Air conditioner, heater and fan</fullName>
+                <default>false</default>
+                <label>Air conditioner, heater and fan</label>
+            </value>
+            <value>
+                <fullName>WiFi</fullName>
+                <default>false</default>
+                <label>WiFi</label>
+            </value>
+            <value>
+                <fullName>TV, speaker or entertainment system</fullName>
+                <default>false</default>
+                <label>TV, speaker or entertainment system</label>
+            </value>
+            <value>
+                <fullName>Phone</fullName>
+                <default>false</default>
+                <label>Phone</label>
+            </value>
+            <value>
+                <fullName>USB charging points</fullName>
+                <default>false</default>
+                <label>USB charging points</label>
+            </value>
+            <value>
+                <fullName>Power adapters and extension cables</fullName>
+                <default>false</default>
+                <label>Power adapters and extension cables</label>
+            </value>
+            <value>
+                <fullName>Desk or workspace</fullName>
+                <default>false</default>
+                <label>Desk or workspace</label>
+            </value>
+            <value>
+                <fullName>Iron and ironing board</fullName>
+                <default>false</default>
+                <label>Iron and ironing board</label>
+            </value>
+            <value>
+                <fullName>Hairdryer</fullName>
+                <default>false</default>
+                <label>Hairdryer</label>
+            </value>
+            <value>
+                <fullName>Towels, bathrobes and slippers</fullName>
+                <default>false</default>
+                <label>Towels, bathrobes and slippers</label>
+            </value>
+            <value>
+                <fullName>Toiletries</fullName>
+                <default>false</default>
+                <label>Toiletries</label>
+            </value>
+            <value>
+                <fullName>Teeth and shaving kits</fullName>
+                <default>false</default>
+                <label>Teeth and shaving kits</label>
+            </value>
+            <value>
+                <fullName>Table and bedside lamps</fullName>
+                <default>false</default>
+                <label>Table and bedside lamps</label>
+            </value>
+            <value>
+                <fullName>Alarm clock</fullName>
+                <default>false</default>
+                <label>Alarm clock</label>
+            </value>
+            <value>
+                <fullName>Laundry bag</fullName>
+                <default>false</default>
+                <label>Laundry bag</label>
+            </value>
+            <value>
+                <fullName>A bathrobe and slippers</fullName>
+                <default>false</default>
+                <label>A bathrobe and slippers</label>
+            </value>
+            <value>
+                <fullName>Desks and workspaces with stationery</fullName>
+                <default>false</default>
+                <label>Desks and workspaces with stationery</label>
+            </value>
+            <value>
+                <fullName>A personalised welcome gift</fullName>
+                <default>false</default>
+                <label>A personalised welcome gift</label>
+            </value>
+            <value>
+                <fullName>A balcony with a view</fullName>
+                <default>false</default>
+                <label>A balcony with a view</label>
+            </value>
+            <value>
+                <fullName>High-end toiletries and personal care products</fullName>
+                <default>false</default>
+                <label>High-end toiletries and personal care products</label>
+            </value>
+            <value>
+                <fullName>In-room air purification</fullName>
+                <default>false</default>
+                <label>In-room air purification</label>
+            </value>
+            <value>
+                <fullName>Tablets for information and room service</fullName>
+                <default>false</default>
+                <label>Tablets for information and room service</label>
+            </value>
+            <value>
+                <fullName>WiFi and a TV or entertainment system</fullName>
+                <default>false</default>
+                <label>WiFi and a TV or entertainment system</label>
+            </value>
+            <value>
+                <fullName>Basic toiletries and a hairdryer</fullName>
+                <default>false</default>
+                <label>Basic toiletries and a hairdryer</label>
+            </value>
+            <value>
+                <fullName>A kettle and minibar</fullName>
+                <default>false</default>
+                <label>A kettle and minibar</label>
+            </value>
+            <value>
+                <fullName>Air conditioning/heating</fullName>
+                <default>false</default>
+                <label>Air conditioning/heating</label>
+            </value>
+            <value>
+                <fullName>A wardrobe</fullName>
+                <default>false</default>
+                <label>A wardrobe</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

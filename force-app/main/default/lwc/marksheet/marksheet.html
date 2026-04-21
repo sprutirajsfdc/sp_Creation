@@ -1,0 +1,118 @@
+<template>
+    <lightning-card>
+
+        <template if:true={student}>
+
+            <div class="sheet">
+
+                <!-- 🔹 HEADER -->
+                <div class="top-header">
+
+                    <div class="profile">
+                        <img src={imageUrl} class="avatar"/>
+                        <div class="info">
+                            <h1>{student.studentName}</h1>
+                            <p>Roll No: {student.rollNumber}</p>
+                            <p>{student.department}</p>
+                            <p>{student.course}</p>
+                        </div>
+                    </div>
+
+                    <div class="portal">
+                        <h2>Academic Portal</h2>
+                        <p>Digital Marksheet Verification System</p>
+                    </div>
+                    <div class="status-badge" data-status={student.status}>
+                        {student.status}
+                    </div>
+
+                </div>
+
+                <!-- 🔹 TABLE -->
+                <div class="table-wrapper">
+
+                    <table class="marks-table">
+                        <thead>
+                            <tr>
+                                <th>Subject</th>
+                                <th>Max Marks</th>
+                                <th>Marks Obtained</th>
+                                <th>Grade & Remarks</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <template for:each={student.courses} for:item="course">
+
+                                <template for:each={course.subjects} for:item="sub">
+
+                                    <tr key={sub.subjectName} class="row">
+
+                                        <td class="subject">
+                                            {sub.subjectName}
+                                        </td>
+
+                                        <td>100</td>
+
+                                        <td>
+                                            <lightning-input
+                                                type="number"
+                                                value={sub.marks}
+                                                data-course={course.courseName}
+                                                data-subject={sub.subjectName}
+                                                variant="label-hidden"
+                                                onchange={handleMarksChange}>
+                                            </lightning-input>
+                                        </td>
+
+                                        <td class="grade">
+                                            {sub.grade}
+                                        </td>
+
+                                    </tr>
+
+                                </template>
+
+                            </template>
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <!-- 🔹 SUMMARY CARDS -->
+                <div class="summary">
+
+                    <div class="card">
+                        <p>Total Marks</p>
+                        <h2>{student.total}</h2>
+                    </div>
+
+                    <div class="card highlight">
+                        <p>Percentage</p>
+                        <h2>{student.percentage}%</h2>
+                    </div>
+
+                    <div class="card">
+                        <p>Final Grade</p>
+                        <h2>{student.grade}</h2>
+                    </div>
+
+                    <div class="card dark">
+                        <p>Division</p>
+                        <h2>{student.division}</h2>
+                    </div>
+
+                </div>
+
+                <!-- 🔹 FOOTER -->
+                <div class="footer">
+                    <p>Grading System: A+ (80-100), A (70-79), B (60-69), C (50-59)</p>
+                </div>
+
+            </div>
+
+        </template>
+
+    </lightning-card>
+</template>

@@ -1,0 +1,188 @@
+/* MAIN SHEET */
+.sheet {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    font-family: Arial, sans-serif;
+}
+
+/* HEADER */
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 15px;
+}
+
+.profile {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #0070d2;
+}
+
+.info h1 {
+    font-size: 20px;
+    margin: 0;
+}
+
+.portal {
+    text-align: right;
+}
+
+.portal h2 {
+    color: #0070d2;
+}
+
+/* TABLE */
+.table-wrapper {
+    margin-top: 20px;
+}
+
+.marks-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.marks-table th {
+    background: #0070d2;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+.marks-table td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+/* ROW HOVER EFFECT */
+.row {
+    transition: 0.3s;
+}
+
+.row:hover {
+    background: #f4f8ff;
+    transform: scale(1.01);
+}
+
+/* SUBJECT STYLE */
+.subject {
+    font-weight: bold;
+}
+
+/* GRADE */
+.grade {
+    font-weight: bold;
+    color: #0070d2;
+}
+
+/* SUMMARY */
+.summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.card {
+    background: #f7f9fc;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.card h2 {
+    margin: 5px 0;
+    color: #0070d2;
+}
+
+.highlight {
+    background: #e8f4ff;
+}
+
+.dark {
+    background: #0070d2;
+    color: white;
+}
+
+.dark h2 {
+    color: white;
+}
+
+/* FOOTER */
+.footer {
+    margin-top: 20px;
+    font-size: 12px;
+    color: gray;
+    text-align: center;
+}
+
+/* RESPONSIVE DESIGN */
+@media screen and (max-width: 768px) {
+
+    .top-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+
+    .summary {
+        grid-template-columns: 1fr;
+    }
+
+    .marks-table {
+        font-size: 12px;
+    }
+}
+
+/* 🔥 STATUS BADGE */
+.status-badge {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+/* PASS */
+.status-badge[data-status="PASS"] {
+    background: #28a745;
+    color: white;
+    box-shadow: 0 0 10px rgba(40,167,69,0.4);
+}
+
+/* FAIL */
+.status-badge[data-status="FAIL"] {
+    background: #dc3545;
+    color: white;
+    box-shadow: 0 0 10px rgba(220,53,69,0.4);
+}
+
+/* Hover effect */
+.status-badge:hover {
+    transform: scale(1.1);
+}

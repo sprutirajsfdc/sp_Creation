@@ -1,0 +1,91 @@
+<template>
+    <lightning-card variant="Narrow">
+        <div class="dashboard-container">
+            <div class="header-section slds-p-around_medium">
+                <div class="title-area">
+                    <h1 class="main-title">Room Management Matrix</h1>
+                    <p class="sub-title">Real-time floor-wise status overview</p>
+                </div>
+                <div class="search-area">
+                    <lightning-combobox
+                        name="statusSearch"
+                        label="Search by Status"
+                        value={selectedStatus}
+                        placeholder="Select Status"
+                        options={statusOptions}
+                        onchange={handleStatusChange}
+                        variant="label-hidden">
+                    </lightning-combobox>
+                </div>
+            </div>
+
+            <div class="summary-grid">
+                <div class="stat-card total">
+                    <p class="stat-label">TOTAL ROOMS</p>
+                    <div class="stat-value-group">
+                        <span class="stat-number">{totalRooms}</span>
+                        <span class="stat-context">Operational</span>
+                    </div>
+                </div>
+                <div class="stat-card occupancy">
+                    <p class="stat-label">OCCUPANCY RATE</p>
+                    <div class="stat-value-group">
+                        <span class="stat-number">{occupancyRate}%</span>
+                        <span class="stat-trend">+4.2% today</span>
+                    </div>
+                </div>
+                <div class="stat-card cleaning-stat">
+                    <p class="stat-label">CLEANING STATUS</p>
+                    <div class="stat-value-group">
+                        <span class="stat-number">{cleaningCount}</span>
+                        <span class="stat-context">In progress</span>
+                    </div>
+                </div>
+                <div class="stat-card maintenance-stat">
+                    <p class="stat-label">MAINTENANCE</p>
+                    <div class="stat-value-group">
+                        <span class="stat-number">{maintenanceCount}</span>
+                        <span class="stat-context">Urgent tickets</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="legend-bar slds-p-horizontal_medium">
+                <span class="legend-item"><span class="dot available"></span> AVAILABLE</span>
+                <span class="legend-item"><span class="dot occupied"></span> OCCUPIED</span>
+                <span class="legend-item"><span class="dot cleaning"></span> CLEANING</span>
+                <span class="legend-item"><span class="dot maintenance"></span> MAINTENANCE</span>
+            </div>
+
+            <template for:each={floors} for:item="floor">
+                <div key={floor.floorNumber} class="floor-section">
+                    <div class="floor-divider">
+                        <span>FLOOR {floor.floorNumber}</span>
+                        <hr/>
+                    </div>
+
+                    <div class="room-grid">
+                        <template for:each={floor.rooms} for:item="room">
+                            <div key={room.Id} class={room.cardClass} >
+                                <div class="room-content">
+                                    <div class="room-image-container">
+                                    <img src={room.imageUrl} alt="Room Preview" class="room-image"/>
+                                </div>
+                                    <!-- <div class="room-image-placeholder"></div> -->
+                                    <div class="room-details">
+                                        <div class="room-header">
+                                            <span class="room-num">{room.Room_Number__c}</span>
+                                            <span class="status-tag">{room.Status__c}</span>
+                                        </div>
+                                        <div class="room-type-text">{room.Room_Type__c}</div>
+                                        <div class="room-view-text">Garden Access</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

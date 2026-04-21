@@ -1,0 +1,53 @@
+:host {
+    --brand-blue: #005fb2;
+    --bg-gray: #f3f4f6;
+    --text-dark: #1a202c;
+}
+
+.container { background-color: var(--bg-gray); min-height: 100vh; }
+.brand-text { color: var(--brand-blue); font-weight: bold; font-size: 10px; letter-spacing: 1px; }
+.main-title { font-size: 28px; font-weight: 800; color: var(--text-dark); }
+.sub-title { color: #718096; max-width: 500px; margin-top: 4px; }
+
+.section-card { border-radius: 12px; overflow: hidden; border: none; }
+
+/* Room Card Styles */
+.room-select-card {
+    background: white; border-radius: 12px; overflow: hidden;
+    cursor: pointer; border: 2px solid transparent; transition: all 0.3s;
+}
+.room-select-card.selected { border-color: var(--brand-blue); box-shadow: 0 4px 20px rgba(0, 95, 178, 0.15); }
+
+.room-img-container { position: relative; height: 140px; }
+.room-img-container img { width: 100%; height: 100%; object-fit: cover; }
+.room-badge { 
+    position: absolute; top: 10px; left: 10px; background: #48bb78; 
+    color: white; font-size: 10px; padding: 2px 8px; border-radius: 4px; text-transform: uppercase;
+}
+
+.room-name { font-weight: bold; color: var(--text-dark); }
+.room-price-text { color: var(--brand-blue); font-weight: 800; font-size: 16px; }
+.room-price-text span { font-size: 10px; color: #a0aec0; }
+.room-meta { color: #a0aec0; font-size: 12px; }
+
+/* Summary Sidebar */
+.summary-title { font-size: 18px; font-weight: bold; margin-bottom: 15px; }
+.date-picker-group { display: flex; align-items: center; justify-content: space-between; }
+
+.summary-row { display: flex; justify-content: space-between; margin-bottom: 12px; color: #4a5568; }
+.summary-row.promo { color: #ed8936; font-weight: 600; }
+.bold-text { font-weight: bold; color: var(--text-dark); }
+
+.total-label { color: #718096; font-weight: bold; font-size: 12px; margin-top: 10px; }
+.total-value { color: var(--brand-blue); font-size: 24px; font-weight: 800; }
+
+.confirm-btn {
+    width: 100%; background: var(--brand-blue); color: white; border: none;
+    padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer;
+}
+.save-draft { color: #718096; font-size: 12px; cursor: pointer; text-decoration: underline; }
+
+.housekeeping-note {
+    background: #fefcbf; border: 1px solid #faf089; border-radius: 8px;
+    padding: 12px; display: flex; gap: 10px; font-size: 12px;
+}

@@ -29,7 +29,7 @@ public class AdmissionReceiptController {
             SELECT Id, Tution_Fees__c, Course_Code__c, Start_Date__c, Department__c,
                    Admission_Fees__c, End_Date__c, Batch_Time__c, Scholrship_Discount__c,
                    Course_Type__c, Student__r.Roll_Number__c, Student__r.Name,
-                   Total_Fees__c, Duration__c, Exam__c, Name, Student__c
+                   Total_Fees__c, Duration__c, Name, Student__c
             FROM Academic_Course__c
             WHERE Id = :recordId
             LIMIT 1

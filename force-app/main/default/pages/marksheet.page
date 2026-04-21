@@ -1,0 +1,117 @@
+<apex:page controller="StudentMarksheetVFController"
+           renderAs="pdf"
+           showHeader="false"
+           sidebar="false"
+           applyHtmlTag="false"
+           applyBodyTag="false">
+
+<html>
+<body style="font-family:'Times New Roman'; border:4px solid #7a5dc7; padding:18px; font-size:12px;">
+<table style="width:100%; font-size:10px; margin-bottom:8px;">
+    <tr>
+        <td style="width:33%;">
+            <b>Roll No:</b> {!rollNumber}
+        </td>
+        <td style="width:33%; text-align:right;">
+            <b>Date:</b> {!formattedDate}
+        </td>
+    </tr>
+</table>
+    <!-- LOGO -->
+    <div style="text-align:center;">
+        <apex:image value="{!URLFOR($Resource.boards)}" width="80" height="80"/>
+    </div>
+
+    <!-- TITLE -->
+    <div style="text-align:center; margin-top:5px;">
+        <div style="font-size:18px; font-weight:bold;">
+            CENTRAL BOARD OF SECONDARY EDUCATION
+        </div>
+        <div style="font-size:14px;">
+            MARKS STATEMENT CUM CERTIFICATE
+        </div>
+        <div style="font-size:13px;">
+            SECONDARY SCHOOL EXAMINATION 2025
+        </div>
+    </div>
+
+    <!-- STUDENT INFO -->
+    <table style="width:100%; margin-top:15px;">
+        <tr>
+            <td>
+                <div><b>Name:</b> {!studentName}</div>
+                <div><b>Roll No:</b> {!rollNumber}</div>
+                <div><b>School:</b> MANIPAL INSTITUTE OF TECHNOLOGY</div>
+            </td>
+
+            <td style="text-align:right;">
+                <apex:image value="{!contactImage}" width="100" height="110"/>
+            </td>
+        </tr>
+    </table>
+
+    <!-- MARKS TABLE -->
+    <table border="1" style="width:100%; border-collapse:collapse; margin-top:20px; text-align:center;">
+
+        <tr style="background:#e6e6fa;">
+            <th>SUBJECT</th>
+            <th>THEORY</th>
+            <th>PRACTICAL</th>
+            <th>TOTAL</th>
+            <th>GRADE</th>
+        </tr>
+
+        <apex:repeat value="{!courses}" var="c">
+            <apex:repeat value="{!c.subjects}" var="s">
+
+                <tr>
+                    <td style="text-align:left;">{!s.subjectName}</td>
+                    <td>{!s.theoryMark}</td>
+                    <td>{!s.practicalMark}</td>
+                    <td>{!s.totalMark}</td>
+                    <td>
+                        <apex:outputText value="{!IF(s.totalMark >= 90,'A1',
+                                                   IF(s.totalMark >= 75,'A2',
+                                                   IF(s.totalMark >= 60,'B1',
+                                                   IF(s.totalMark >= 45,'B2','C'))))}"/>
+                    </td>
+                </tr>
+
+            </apex:repeat>
+        </apex:repeat>
+
+    </table>
+
+    <!-- RESULT SUMMARY -->
+    <div style="margin-top:20px; font-size:13px;">
+
+        <div><b>Grand Total:</b> {!grandTotal} / {!maxTotal}</div>
+
+        <div style="margin-top:5px;">
+            <b>Percentage:</b>
+            <apex:outputText value="{!ROUND(percentage, 2)}"/> %
+        </div>
+
+        <div style="margin-top:5px;">
+            <b>Result:</b>
+            <apex:outputText value="{!IF(percentage >= 35, 'PASS', 'FAIL')}"/>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div style="margin-top:40px;">
+        <table style="width:100%;">
+            <tr>
+                <td><b>Date:</b> {!TODAY()}</td>
+                <td style="text-align:right;">
+                    Controller of Examination
+                    <div style="margin-top:40px;">Signature</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>
+</apex:page>
